@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3083e9e4c18f5bb5d77a5307f204662",
+    "revision": "599a5d7e41df0911d6e239b8c712e8d6",
     "url": "/madcamp4/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/madcamp4/static/js/2.234ba8b5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c2ca5b28f367e3a45dd0",
-    "url": "/madcamp4/static/js/main.aad28105.chunk.js"
+    "revision": "41c1b93cd37481950d7b",
+    "url": "/madcamp4/static/js/main.930fce25.chunk.js"
   },
   {
     "revision": "9f56e68d8ca841ea4afe",

@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/madcamp4/static/js/main.aad28105.chunk.js",
-    "main.js.map": "/madcamp4/static/js/main.aad28105.chunk.js.map",
+    "main.js": "/madcamp4/static/js/main.930fce25.chunk.js",
+    "main.js.map": "/madcamp4/static/js/main.930fce25.chunk.js.map",
     "runtime-main.js": "/madcamp4/static/js/runtime-main.0b96f2e1.js",
     "runtime-main.js.map": "/madcamp4/static/js/runtime-main.0b96f2e1.js.map",
     "static/js/2.234ba8b5.chunk.js": "/madcamp4/static/js/2.234ba8b5.chunk.js",
     "static/js/2.234ba8b5.chunk.js.map": "/madcamp4/static/js/2.234ba8b5.chunk.js.map",
     "index.html": "/madcamp4/index.html",
-    "precache-manifest.f14d163f3f0ce594d236f773dbcf4252.js": "/madcamp4/precache-manifest.f14d163f3f0ce594d236f773dbcf4252.js",
+    "precache-manifest.48d2a0c0fb07c4514b2b6e265c2e2a06.js": "/madcamp4/precache-manifest.48d2a0c0fb07c4514b2b6e265c2e2a06.js",
     "service-worker.js": "/madcamp4/service-worker.js",
     "static/js/2.234ba8b5.chunk.js.LICENSE.txt": "/madcamp4/static/js/2.234ba8b5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0b96f2e1.js",
     "static/js/2.234ba8b5.chunk.js",
-    "static/js/main.aad28105.chunk.js"
+    "static/js/main.930fce25.chunk.js"
   ]
 }
