@@ -6,15 +6,18 @@ export const Layout = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 100%;
+  cursor: url(music.cur), auto;
 `;
 
 export const LayoutBorder = styled.div`
   width: 100%;
   height: 0.5rem;
   background-color: ${THEME_COLOR.PRIMARY};
+  cursor: url(music.cur), auto;
 `;
 
 export const LayoutContainer = styled.div`
   width: 100%;
   margin-bottom: 6rem;
+  cursor: url(music.cur), auto;
 `;

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Grid, Row, Col } from "../../component/grid/styles";
 import * as S from "./styles";
 
 import BoardItem from "../../component/board-item";
@@ -9,11 +9,31 @@ interface BoardListProps {}
 const BoardList: React.FC<BoardListProps> = () => {
   return (
     <S.BoardList>
-      <BoardItem />
-      <BoardItem />
-      <BoardItem />
-      <BoardItem />
-      <BoardItem />
+      <Grid>
+        <Row>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+          <Col span={4}>
+            <BoardItem />
+          </Col>
+        </Row>
+      </Grid>
     </S.BoardList>
   );
 };

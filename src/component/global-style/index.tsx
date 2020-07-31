@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
   html {
     font-size : 10px;
+    cursor: url(music.cur), auto;
   }
   
   body {
@@ -18,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    cursor: pointer;
+    cursor:url(music2.cur), auto;
   }
   
   ul {
