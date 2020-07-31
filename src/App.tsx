@@ -16,13 +16,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/menu1" exact component={Menu1} />
-        <Route path="/menu2" exact component={Menu2} />
-        <Route path="/menu3" exact component={Menu3} />
-        <Route path="/menu4" exact component={Menu4} />
-        <Route path="/menu11" exact component={Menu11} />
-        <Redirect from="*" to="/" />
+        <Route path="/madcamp4" exact component={Main} />
+        <Route path="/madcamp4/menu1" exact component={Menu1} />
+        <Route path="/madcamp4/menu2" exact component={Menu2} />
+        <Route path="/madcamp4/menu3" exact component={Menu3} />
+        <Route path="/madcamp4/menu4" exact component={Menu4} />
+        <Route path="/madcamp4/menu11" exact component={Menu11} />
+        <Redirect from="*" to="/madcamp4" />
       </Switch>
     </Router>
   );
