@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/madcamp4/precache-manifest.48d2a0c0fb07c4514b2b6e265c2e2a06.js"
+  "/madcamp4/precache-manifest.78355d348aa87f68e4a1e7c39eb4889e.js"
 );
 
 self.addEventListener('message', (event) => {
