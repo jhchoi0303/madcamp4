@@ -4,6 +4,7 @@ import * as S from "./styles";
 import Modal from "../../component/modal";
 import Layout from "../../component/layout";
 import BoardList from "../../container/board-list";
+import BoardHot from "../../container/board-hot";
 import PaginationBar from "../../container/pagination-bar";
 
 import { STATIC_URL } from "../../constants";
@@ -12,12 +13,13 @@ const Menu3: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => setShowModal(!showModal);
-
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
   return (
     <Layout>
       <S.Board>
         <S.TitleContainer>
-          <S.Title>게시판</S.Title>
+          <S.Title>커뮤너티</S.Title>
         </S.TitleContainer>
         <S.BoardToolsContainer>
           <img
@@ -29,6 +31,7 @@ const Menu3: React.FC = () => {
         </S.BoardToolsContainer>
         <S.BoardContainer>
           <S.BoardListContainer>
+            <BoardHot />
             <BoardList />
           </S.BoardListContainer>
         </S.BoardContainer>

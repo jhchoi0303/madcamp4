@@ -11,25 +11,31 @@ const BoardList: React.FC<BoardListProps> = () => {
     <S.BoardList>
       <Grid>
         <Row>
-          <Col span={4}>
+          <Col span={3}>
             <BoardItem />
           </Col>
-          <Col span={4}>
+          <Col span={3}>
             <BoardItem />
           </Col>
-          <Col span={4}>
+          <Col span={3}>
+            <BoardItem />
+          </Col>
+          <Col span={3}>
             <BoardItem />
           </Col>
         </Row>
 
         <Row>
-          <Col span={4}>
+          <Col span={3}>
             <BoardItem />
           </Col>
-          <Col span={4}>
+          <Col span={3}>
             <BoardItem />
           </Col>
-          <Col span={4}>
+          <Col span={3}>
+            <BoardItem />
+          </Col>
+          <Col span={3}>
             <BoardItem />
           </Col>
         </Row>

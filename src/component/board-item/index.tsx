@@ -11,7 +11,6 @@ const BoardItem: React.FC<BoardItemProps> = () => {
         <S.BoardItemContent>
           <S.BoardItemImage></S.BoardItemImage>
           <S.BoardItemMeta>
-            <S.BoardItemLike>좋아요 수</S.BoardItemLike>
             <S.BoardItemViews>조회수</S.BoardItemViews>
             <S.BoardItemArtist>작곡가</S.BoardItemArtist>
           </S.BoardItemMeta>
