@@ -72,10 +72,66 @@ export const PostContent = styled.div`
   border-bottom: 2px solid ${THEME_COLOR.GRAY};
   padding-bottom: 6rem;
 `;
-export const PostAlbum = styled.div`
+export const PlayButton = styled.button`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 9;
+  transform: scale(2);
+  transition: all 0.3s linear;
+  display: none;
+  background: orange;
+  border: 2rem;
+  color: white;
+`;
+export const Triangle = styled.div`
+  width: 0px;
+  height: 0px;
+  border-right: 9px solid none;
+  border-left: 9px solid #ffff;
+  border-bottom: 7px solid transparent;
+  border-top: 7px solid transparent;
+`;
+
+export const PostAlbum = styled.img`
   width: 20rem;
   height: 20rem;
   background: red;
+`;
+
+export const Darkness = styled.div`
+  width: 20rem;
+  height: 20rem;
+  transition: all 0.6s linear;
+  display: none;
+  background-color: grey;
+  position: absolute;
+  opacity: 4;
+`;
+
+export const PostAlbumContainer = styled.div`
+  width: 20rem;
+  height: 20rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover ${PlayButton} {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  :hover ${Darkness} {
+    display: block;
+    opacity: 0.4;
+  }
 `;
 
 export const NewCommentContainer = styled.div`
