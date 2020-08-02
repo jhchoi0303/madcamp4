@@ -9,7 +9,7 @@ interface TestState {
     count: number;
 }
 
-class Test extends React.Component<RouteComponentProps<TestProps>, TestState> {
+class Timer extends React.Component<RouteComponentProps<TestProps>, TestState> {
     constructor (props: RouteComponentProps<TestProps>) {
         super(props);
         this.state = {
@@ -41,4 +41,4 @@ class Test extends React.Component<RouteComponentProps<TestProps>, TestState> {
     }
 }
 
-export default Test;
+export default Timer;
