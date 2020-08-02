@@ -4,6 +4,10 @@ import * as S from "./styles";
 import Layout from "../../component/layout";
 
 const Post: React.FC = () => {
+  fetch('/input')
+    .then((response) => {
+      console.log(response.body);
+    });
   return (
     <Layout>
       <S.Post>
