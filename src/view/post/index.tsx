@@ -5,6 +5,10 @@ import Layout from "../../component/layout";
 import { Grid, Row, Col } from "../../component/grid/styles";
 
 const Post: React.FC = () => {
+  fetch('/input')
+    .then((response) => {
+      console.log(response.body);
+    });
   return (
     <Layout>
       <S.Post>
