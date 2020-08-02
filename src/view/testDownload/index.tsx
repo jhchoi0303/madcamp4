@@ -141,6 +141,10 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
         <button id="middle">중음</button>
         <button id="low">저음</button>
         <button id="original">초기화</button>
+
+        <input id="high-bar" type="range" min="0" max="100"></input>
+        <input id="middle-bar" type="range" min="0" max="100"></input>
+        <input id="low-bar" type="range" min="0" max="100"></input>
       </React.Fragment>
     )
   }
