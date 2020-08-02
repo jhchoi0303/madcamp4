@@ -2,7 +2,9 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 interface AudioProps {
-    title: string;
+    title: string,
+    email: string,
+    url: string
 }
 
 class Download extends React.Component<RouteComponentProps<AudioProps>> {
@@ -11,10 +13,36 @@ class Download extends React.Component<RouteComponentProps<AudioProps>> {
     }
 
     componentDidMount() {
-        const {title} = this.props.match.params;
-        const request = new XMLHttpRequest();
+        const {title, email, url} = this.props.match.params;
 
-        request.open("GET", `/api/youtube/download?title=${title}`, true);
+        if (url == null) {
+            this.getAudioByTitle(title, email);
+        } else {
+            this.getAudioByUrl(url);
+        }
+    }
+
+    getAudioByTitle(title: string, email: string) {
+        const request = new XMLHttpRequest();
+        request.open("GET", `/api/youtube/download?title=${title}&email=${email}`, true);
+        request.responseType="blob";
+        request.onload = function() {
+            if (this.status == 200) {
+                const audio: HTMLAudioElement | null = document.querySelector('#audio');
+
+                if (audio != null) {
+                    audio.setAttribute('src', URL.createObjectURL(this.response));
+                    audio.load();
+                    alert("Loading success");
+                }
+            }
+        }
+        request.send();
+    }
+
+    getAudioByUrl(url: string) {
+        const request = new XMLHttpRequest();
+        request.open("GET", `/api/youtube/download?url=${url}`, true);
         request.responseType="blob";
         request.onload = function() {
             if (this.status == 200) {
@@ -33,7 +61,7 @@ class Download extends React.Component<RouteComponentProps<AudioProps>> {
     render() {
         return (
             <React.Fragment>
-                <audio id="audio" src="#" controls></audio>
+                <audio id="audio" controls loop></audio>
             </React.Fragment>
         )
     }
