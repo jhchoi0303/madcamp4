@@ -16,7 +16,7 @@ import Menu11 from "./view/menu1.1";
 import Post from "./view/post";
 
 import Timer from "./view/testTimer";
-import Download from "./view/testDownload"
+import Download from "./view/testDownload";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
         <Route path="/test/timer" exact component={Timer} />
         <Route path="/test/timer/:name" exact component={Timer} />
         <Route path="/test/youtube" exact component={Download} />
-        <Route path="/text/youtube/:url" exact component={Download} />
+        <Route path="/test/youtube/:url" exact component={Download} />
         <Route path="/test/youtube/:title/:email" exact component={Download} />
         <Redirect from="*" to="/madcamp4" />
       </Switch>

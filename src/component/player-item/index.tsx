@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-
+import Slider from "./Slider";
 interface PlayerItemProps {}
 
 const PlayerItem: React.FC<PlayerItemProps> = () => {
@@ -18,6 +18,8 @@ const PlayerItem: React.FC<PlayerItemProps> = () => {
         </S.PlayerInfoText>
         <S.PlayerWavForm></S.PlayerWavForm>
       </S.PlayerInfo>
+
+      <Slider></Slider>
     </S.PlayerItem>
   );
 };
