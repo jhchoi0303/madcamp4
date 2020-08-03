@@ -1,14 +1,20 @@
 import React from "react";
 import * as S from "./styles";
 import Slider from "./Slider";
-interface PlayerItemProps {}
+import App from "./createref";
+import Download from "../../view/testDownload/index";
+
+interface PlayerItemProps {
+  position: string;
+}
 
 const PlayerItem: React.FC<PlayerItemProps> = () => {
   return (
     <S.PlayerItem>
       <S.PlayerUrlContainer>
-        <S.PlayerUrl>URL을 입력해주세오</S.PlayerUrl>
-        <S.PlayerButton></S.PlayerButton>
+        <App>
+          <div id="audio"></div>
+        </App>
       </S.PlayerUrlContainer>
 
       <S.PlayerInfo>

@@ -10,8 +10,8 @@ const Menu1: React.FC = () => {
     <Layout>
       <S.Main>
         <S.PlayerContainer>
-          <PlayerItem></PlayerItem>
-          <PlayerItem></PlayerItem>
+          <PlayerItem position="left"></PlayerItem>
+          <PlayerItem position="right"></PlayerItem>
         </S.PlayerContainer>
       </S.Main>
     </Layout>
