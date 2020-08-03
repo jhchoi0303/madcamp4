@@ -64,7 +64,7 @@ export default class Slider extends React.Component {
       >
         <input
           type="range"
-          min={-10}
+          min={-25}
           max={5}
           value={this.state.value}
           className="slider"
