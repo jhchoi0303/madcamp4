@@ -20,6 +20,17 @@ export const PlayerUrl = styled.textarea`
   letter-spacing: 1px; /* for bettter reading experience */
 `;
 
+export const Button = styled.button`
+  display: inline-block;
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  display: block;
+`;
+
 export const PlayerButton = styled.button`
   width: 40px;
   height: 40px;

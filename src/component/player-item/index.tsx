@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import Slider from "./Slider";
+import App from "./createref";
 
 interface PlayerItemProps {
   position: String;
@@ -110,10 +111,11 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
     return (
       <S.PlayerItem>
         <S.PlayerUrlContainer>
-          <S.PlayerUrl>URL을 입력해주세오</S.PlayerUrl>
-          <S.PlayerButton></S.PlayerButton>
+          <App>
+            <div id="audio"></div>
+          </App>
         </S.PlayerUrlContainer>
-  
+
         <S.PlayerInfo>
           <S.PlayerInfoText>
             <S.PlayerTitle>곡명은 여기에 온다</S.PlayerTitle>
@@ -121,10 +123,7 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
           </S.PlayerInfoText>
           <S.PlayerWavForm></S.PlayerWavForm>
         </S.PlayerInfo>
-  
-        <audio className="audio" src="/static/temp/youtube_wav/ImSick아퍼FeatKidMilliLiltachiKimSeungmin김승민NOELCJAMM.wav" controls></audio>
-        <button className="play-btn">재생</button>
-  
+
         <S.SliderContainer>
           <S.Slider>
             <Slider></Slider>
