@@ -74,3 +74,12 @@ export const PlayerWavForm = styled.canvas`
   height: 20rem;
   width: 20rem;
 `;
+
+export const SliderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const Slider = styled.div`
+  width: 60px;
+`;
