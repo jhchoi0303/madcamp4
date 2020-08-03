@@ -22,7 +22,7 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
 
   componentDidMount() {
     console.log("hello playerItem");
-    this.startAudioFilter()
+    // this.startAudioFilter()
   }
 
   startAudioFilter() {
@@ -126,13 +126,13 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
 
         <S.SliderContainer>
           <S.Slider>
-            <Slider></Slider>
+            <Slider color="#eeeeee" opacity="0.1"></Slider>
           </S.Slider>
           <S.Slider>
-            <Slider></Slider>
+            <Slider color="#eeeeee" opacity="0.1"></Slider>
           </S.Slider>
           <S.Slider>
-            <Slider></Slider>
+            <Slider color="#eeeeee" opacity="0.1"></Slider>
           </S.Slider>
         </S.SliderContainer>
       </S.PlayerItem>
