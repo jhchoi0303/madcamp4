@@ -52,6 +52,10 @@ export default class Slider extends React.Component {
 
   handleOnChange = (e) => this.setState({ value: e.target.value });
 
+  componentDidMount() {
+    console.log("hello slider");
+  }
+
   render() {
     return (
       <Styles
