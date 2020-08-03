@@ -37,7 +37,7 @@ export const PlayerButton = styled.button`
 `;
 
 export const PlayerUrlContainer = styled.div`
-  height: 10rem;
+  height: 20rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

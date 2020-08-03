@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import Slider from "./Slider";
-import App from "./createref";
+import UrlInputBox from "./url-input-box";
 
 interface PlayerItemProps {
   position: String;
@@ -22,7 +22,7 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
 
   componentDidMount() {
     console.log("hello playerItem");
-    // this.startAudioFilter()
+    this.startAudioFilter()
   }
 
   startAudioFilter() {
@@ -111,9 +111,7 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
     return (
       <S.PlayerItem>
         <S.PlayerUrlContainer>
-          <App>
-            <div id="audio"></div>
-          </App>
+          <UrlInputBox position={this.props.position}></UrlInputBox>
         </S.PlayerUrlContainer>
 
         <S.PlayerInfo>
