@@ -9,17 +9,9 @@ export const Main = styled.div`
   }
 `;
 
-export const Section = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 5rem;
+export const PlayerContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  @media only screen and (min-width: ${BREAKPOINT}px) {
-    margin-bottom: 30rem;
-    flex-direction: row-reverse;
-    align-items: center;
-  }
+  flex-direction: row;
 `;
 
 export const IntroContainer = styled.div`

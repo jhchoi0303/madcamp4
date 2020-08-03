@@ -1,14 +1,14 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
 interface AudioProps {
-  title: string,
-  email: string,
-  url: string
+  title: string;
+  email: string;
+  url: string;
 }
 
 interface AudioState {
-  playState: Boolean
+  playState: Boolean;
 }
 
 class Download extends React.Component<RouteComponentProps<AudioProps>, AudioState> {
@@ -106,21 +106,21 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
       biquadFilterHigh.gain.value = 5;
       biquadFilterMiddle.gain.value = 0;
       biquadFilterLow.gain.value = 0;
-    })
+    });
     document.querySelector('#middle')?.addEventListener('click', (ev) => {
       biquadFilterHigh.gain.value = 0;
       biquadFilterMiddle.gain.value = 5;
       biquadFilterLow.gain.value = 0;
-    })
+    });
     document.querySelector('#low')?.addEventListener('click', (ev) => {
       biquadFilterHigh.gain.value = 0;
       biquadFilterMiddle.gain.value = 0;
       biquadFilterLow.gain.value = 5;
-    })
+    });
     document.querySelector('#play')?.addEventListener('click', (ev) => {
       audioContext.resume().then(() => {
-        const playState = !this.state.playState
-        this.setState({ playState: playState })
+        const playState = !this.state.playState;
+        this.setState({ playState: playState });
 
         if (playState) {
             audioElem.play();
@@ -128,7 +128,7 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
             audioElem.pause();
         }
       });
-    })
+    });
   }
 
   render() {
@@ -146,7 +146,7 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
         <input id="middle-bar" type="range" min="0" max="100"></input>
         <input id="low-bar" type="range" min="0" max="100"></input>
       </React.Fragment>
-    )
+    );
   }
 }
 

@@ -19,8 +19,8 @@ export const STATIC_URL = {
 };
 
 export const THEME_COLOR = {
-  PRIMARY: "#C2201F",
-  SECONDARY: "#F19296",
+  PRIMARY: "#FF9933",
+  SECONDARY: "#FFCC66",
   GRAY: "#F1F1F1",
   GRAYER: "#EDEDED",
 };

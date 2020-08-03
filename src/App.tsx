@@ -16,7 +16,7 @@ import Menu11 from "./view/menu1.1";
 import Post from "./view/post";
 
 import Timer from "./view/testTimer";
-import Download from "./view/testDownload"
+import Download from "./view/testDownload";
 
 function App() {
   return (

@@ -4,10 +4,14 @@ import { THEME_COLOR } from "../../constants";
 export const Post = styled.div`
   width: 100%;
   height: 100%;
-  padding: 2rem;
-  margin-top: 1rem;
+  padding: 10rem;
 `;
-
+export const ContentContainer = styled.div`
+  width: 100%;
+  height: 80rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+`;
 export const PostContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -51,12 +55,21 @@ export const PostMetaContainer = styled.div`
   padding: 0.5rem 0.5rem;
   background-color: ${THEME_COLOR.SECONDARY};
 `;
-
+export const PostWaveForm = styled.img`
+  width: 100%;
+  height: 15rem;
+  border: 3px solid;
+`;
 export const PostWriter = styled.div`
   font-size: 1.4rem;
   color: white;
 `;
-
+export const PostIntro = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+`;
 export const PostContentContainer = styled.div`
   width: 100%;
   margin-top: 6rem;
@@ -69,13 +82,13 @@ export const PostContentContainer = styled.div`
 export const PostContent = styled.div`
   font-size: 1.4rem;
   line-height: 2.24rem;
-  border-bottom: 2px solid ${THEME_COLOR.GRAY};
   padding-bottom: 6rem;
+  border: 1px solid;
 `;
 export const PlayButton = styled.button`
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -91,10 +104,11 @@ export const PlayButton = styled.button`
 export const Triangle = styled.div`
   width: 0px;
   height: 0px;
-  border-right: 9px solid none;
-  border-left: 9px solid #ffff;
-  border-bottom: 7px solid transparent;
-  border-top: 7px solid transparent;
+
+  margin-left: 2px;
+  border-bottom: 12px solid transparent;
+  border-top: 12px solid transparent;
+  border-left: 18px solid #ffff;
 `;
 
 export const PostAlbum = styled.img`
@@ -115,11 +129,9 @@ export const Darkness = styled.div`
 
 export const PostAlbumContainer = styled.div`
   width: 20rem;
-  height: 20rem;
+  height: 100%;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   :hover ${PlayButton} {
     display: block;
