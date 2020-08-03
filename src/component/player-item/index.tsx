@@ -19,7 +19,17 @@ const PlayerItem: React.FC<PlayerItemProps> = () => {
         <S.PlayerWavForm></S.PlayerWavForm>
       </S.PlayerInfo>
 
-      <Slider></Slider>
+      <S.SliderContainer>
+        <S.Slider>
+          <Slider></Slider>
+        </S.Slider>
+        <S.Slider>
+          <Slider></Slider>
+        </S.Slider>
+        <S.Slider>
+          <Slider></Slider>
+        </S.Slider>
+      </S.SliderContainer>
     </S.PlayerItem>
   );
 };

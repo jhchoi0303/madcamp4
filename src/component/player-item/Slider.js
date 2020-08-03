@@ -15,6 +15,7 @@ const sliderThumbStyles = (props) => `
 const Styles = styled.div`
   display: flex;
   align-items: center;
+  width: 300px;
   transform: rotate(-90deg);
   color: #888;
   margin-top: 2rem;
@@ -22,13 +23,14 @@ const Styles = styled.div`
   .value {
     flex: 1;
     font-size: 2rem;
+    text-align: center;
     transform: rotate(-270deg);
   }
   .slider {
     flex: 5;
     -webkit-appearance: none;
-    width: 60%;
-    height: 20px;
+    width: 100%;
+    height: 15px;
     border-radius: 5px;
     background: #efefef;
     outline: none;
