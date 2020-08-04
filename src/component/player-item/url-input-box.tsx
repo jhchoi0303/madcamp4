@@ -67,7 +67,11 @@ class UrlInputBox extends React.Component<UrlInputBoxProps, UrlInputBoxState> {
 
         const json = JSON.parse(requestMeta.response);
 
-        titleElem.innerHTML = atob(json.title);
+        titleElem.innerHTML = decodeURIComponent(
+          Array.prototype.map.call(atob(json.title), function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+          }).join('')
+        );
         durationElem.innerHTML = json.duration;
       }
     }
