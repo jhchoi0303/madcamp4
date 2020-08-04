@@ -35,17 +35,18 @@ class UrlInputBox extends React.Component<UrlInputBoxProps, UrlInputBoxState> {
   };
 
   getAudioByUrl(url: string) {
-    const request = new XMLHttpRequest();
+    const requestAudio = new XMLHttpRequest();
+    const requestMeta = new XMLHttpRequest();
 
     let index = 0;
-    if (this.props.position == 'right') {
+    if (this.props.position === 'right') {
       index = 1;
     }
 
-    request.open("GET", `/api/youtube/download?url=${url}`, true);
-    request.responseType = "blob";
-    request.onload = function() {
-      if (this.status == 200) {
+    requestAudio.open("GET", `/api/youtube/download?url=${url}`, true);
+    requestAudio.responseType = "blob";
+    requestAudio.onload = function() {
+      if (this.status === 200) {
         const audio = document.querySelectorAll(".audio")[index] as HTMLAudioElement;
         if (audio != null) {
           audio.setAttribute("src", URL.createObjectURL(this.response));
@@ -56,9 +57,22 @@ class UrlInputBox extends React.Component<UrlInputBoxProps, UrlInputBoxState> {
         alert("Check url");
       }
     };
-    request.send();
+    requestAudio.send();
+
+    requestMeta.open("GET", `/api/youtube/download/meta?url=${url}`, true)
+    requestMeta.onload = () => {
+      if (requestMeta.status === 200) {
+        const titleElem = document.querySelectorAll(".audio-title")[index];
+        const durationElem = document.querySelectorAll(".audio-duration")[index];
+
+        const json = JSON.parse(requestMeta.response);
+
+        titleElem.innerHTML = atob(json.title);
+        durationElem.innerHTML = json.duration;
+      }
+    }
+    requestMeta.send()
   }
-  
 
   render() {
     return (

@@ -36,7 +36,7 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
     request.open("GET", `/api/youtube/download?title=${title}&email=${email}`, true);
     request.responseType = "blob";
     request.onload = function () {
-      if (this.status == 200) {
+      if (this.status === 200) {
         const audio: HTMLAudioElement | null = document.querySelector('#audio');
 
         if (audio != null) {
@@ -54,7 +54,7 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
     request.open("GET", `/api/youtube/download?url=${url}`, true);
     request.responseType = "blob";
     request.onload = function () {
-      if (this.status == 200) {
+      if (this.status === 200) {
         const audio: HTMLAudioElement | null = document.querySelector('#audio');
 
         if (audio != null) {

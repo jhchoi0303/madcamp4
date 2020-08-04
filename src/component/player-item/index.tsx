@@ -35,7 +35,7 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
 
     let index: number = 0;
     let sliderIndex: number = 0;
-    if (this.props.position == "right") {
+    if (this.props.position === "right") {
       index = 1;
       sliderIndex = 3;
     }
@@ -116,8 +116,8 @@ class PlayerItem extends React.Component<PlayerItemProps, PlayerItemState> {
 
         <S.PlayerInfo>
           <S.PlayerInfoText>
-            <S.PlayerTitle>곡명은 여기에 온다</S.PlayerTitle>
-            <S.PlayerTime>곡 길이는 여기에 온다</S.PlayerTime>
+            <S.PlayerTitle><span className="audio-title">곡명은 여기에 온다</span></S.PlayerTitle>
+            <S.PlayerTime><span className="audio-duration">곡 길이는 여기에 온다</span></S.PlayerTime>
           </S.PlayerInfoText>
           <S.PlayerWavForm></S.PlayerWavForm>
         </S.PlayerInfo>
