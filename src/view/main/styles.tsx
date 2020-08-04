@@ -6,7 +6,7 @@ export const Main = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
-  animation: ${fadeIn} 0.5s linear;
+  animation: ${fadeIn} 1s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
   }
 `;
@@ -15,7 +15,7 @@ export const Image = styled.img`
   height: 300px;
   margin-top: 15rem;
   margin-right: 100rem;
-  animation: ${rotation} 0.1s infinite;
+  animation: ${rotation} 10s infinite;
 `;
 export const ImageContainer = styled.div`
   display: flex;
