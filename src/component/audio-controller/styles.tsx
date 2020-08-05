@@ -7,4 +7,5 @@ export const AudioController = styled.div`
   align-item: center;
 
   width: 100%;
+  padding: 30px 3%;
 `;

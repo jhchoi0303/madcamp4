@@ -33,7 +33,7 @@ export const WaveformContainer = styled.div`
 export const Wave = styled.div`
   order: 2;
   width: 100%;
-  height: 90px;
+  height: 140px;
 `
 
 function playButtonMargin(props: PlayButtonProps) {
@@ -52,11 +52,10 @@ export const PlayButton = styled.button`
 
   margin: ${(props: PlayButtonProps) => playButtonMargin(props)};
 
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 50px;
 
   background: #EFEFEF;
-  border-radius: 50%;
   border: none;
   outline: none;
   cursor: pointer;
@@ -65,4 +64,8 @@ export const PlayButton = styled.button`
   &:hover {
     background: #DDD;
   }
+`
+
+export const TitleBox = styled.div`
+  height:50px;
 `

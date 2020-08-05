@@ -21,7 +21,7 @@ function initAudioPlayer() {
       barWidth: 3,
       cursorWidth: 1,
       backend: 'MediaElement',
-      height: 80,
+      height: 120,
       progressColor: '#2D5BFF',
       responsive: true,
       waveColor: '#EFEFEF',
@@ -71,10 +71,18 @@ function initUrlInputBox() {
 }
 
 function attachFilter(index: number) {
-  const audioElem = document.querySelectorAll('.waveform audio')[index] as HTMLAudioElement;
+  let audioElem = document.querySelectorAll('.waveform audio')[index] as HTMLAudioElement;
   const sliderElemList = document.querySelectorAll('.slider') as NodeListOf<HTMLInputElement>;
 
+  if (audioElem == null) {
+    index = 0;
+    audioElem = document.querySelectorAll('.waveform audio')[index] as HTMLAudioElement;
+  }
+
   let sliderIndex = index * 3;
+
+  console.log(document.querySelectorAll('.waveform audio'))
+  console.log(index);
   
   const audioContext = new AudioContext();
   const audioDestination = audioContext.destination;

@@ -18,6 +18,7 @@ class YoutubePlayer extends React.Component<YoutubePlayerProps> {
     return (
       <S.YoutubePlayer>
         <UrlInputBox></UrlInputBox>
+        <S.TitleBox></S.TitleBox>
         <Player position={this.props.position}>
           <img src="./play-button.png"></img>
         </Player>
