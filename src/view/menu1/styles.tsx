@@ -11,7 +11,7 @@ export const Main = styled.div`
 
 export const PlayerContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: column nowrap;
 `;
 
 export const IntroContainer = styled.div`

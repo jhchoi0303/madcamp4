@@ -10,14 +10,14 @@ const Master: React.FC<MasterProps> = () => {
     <S.SliderColumn>
       <S.SliderRow>
         <S.Slider>
-          <Slider></Slider>
+          <Slider color="#eeeeee" opacity="0.1"></Slider>
         </S.Slider>
         <S.Slider>
-          <Slider></Slider>
+          <Slider color="#eeeeee" opacity="0.1"></Slider>
         </S.Slider>
       </S.SliderRow>
 
-      <Slider2></Slider2>
+      <Slider2 color="#eeeeee" opacity="0.1"></Slider2>
     </S.SliderColumn>
   );
 };

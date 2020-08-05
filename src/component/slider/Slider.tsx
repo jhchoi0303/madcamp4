@@ -1,7 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
-const sliderThumbStyles = (props) => `
+interface SliderProps {
+  color: string;
+  opacity: string;
+}
+
+interface SliderState {
+  value: number;
+}
+
+const sliderThumbStyles = (props: SliderProps) => `
   width: 25px;
   height: 25px;
   background: ${props.color};
@@ -36,37 +45,46 @@ const Styles = styled.div`
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      ${(props) => sliderThumbStyles(props)}
+      ${(props: SliderProps) => sliderThumbStyles(props)}
     }
     &::-moz-range-thumb {
-      ${(props) => sliderThumbStyles(props)}
+      ${(props: SliderProps) => sliderThumbStyles(props)}
     }
   }
 `;
 
-export default class Slider extends React.Component {
-  state = {
-    value: 0,
-  };
+class Slider extends React.Component<SliderProps, SliderState> {
+  constructor(props: SliderProps) {
+    super(props);
 
-  handleOnChange = (e) => this.setState({ value: e.target.value });
+    this.state = {
+      value: 0,
+    };
+  }
+
+  componentDidMount() {
+    console.log("hello slider");
+  }
 
   render() {
+    const value = this.state.value;
     return (
       <Styles
-        opacity={this.state.value > 10 ? this.state.value / 255 : 0.1}
+        opacity={(value > 10 ? value / 255 : 0.1).toString()}
         color={this.props.color}
       >
         <input
           type="range"
-          min={-10}
+          min={-25}
           max={5}
           value={this.state.value}
           className="slider"
-          onChange={this.handleOnChange}
+          onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
         />
         <div className="value">{this.state.value}</div>
       </Styles>
     );
   }
 }
+
+export default Slider;

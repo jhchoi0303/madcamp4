@@ -8,13 +8,13 @@ const HighMidLow: React.FC<SliderProps> = () => {
   return (
     <S.SliderContainer>
       <S.Slider>
-        <Slider></Slider>
+        <Slider color="#eeeeee" opacity="0.1"></Slider>
       </S.Slider>
       <S.Slider>
-        <Slider></Slider>
+        <Slider color="#eeeeee" opacity="0.1"></Slider>
       </S.Slider>
       <S.Slider>
-        <Slider></Slider>
+        <Slider color="#eeeeee" opacity="0.1"></Slider>
       </S.Slider>
     </S.SliderContainer>
   );
