@@ -75,8 +75,8 @@ class Slider extends React.Component<SliderProps, SliderState> {
       >
         <input
           type="range"
-          min={-25}
-          max={5}
+          min={0}
+          max={100}
           value={this.state.value}
           className="slider"
           onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}

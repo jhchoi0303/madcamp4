@@ -5,20 +5,29 @@ import DrumKit from "./beatmaker";
 const Styles = styled.div`
   .kick-pad,
   .snare-pad,
-  .hihat-pad {
-    width: 5rem;
-    height: 5rem;
-    margin: 1rem 0.5rem;
+  .hihat-pad,
+  .clap-pad,
+  .highhat-pad {
+    width: 8rem;
+    height: 8rem;
+    border: 0.1rem solid;
+    border-color: grey;
     cursor: pointer;
   }
   .kick-pad {
-    background: rgb(160, 211, 224);
+    /*background: rgb(160, 211, 224);*/
   }
   .snare-pad {
-    background: rgb(224, 160, 208);
+    /*background: rgb(224, 160, 208);*/
   }
   .hihat-pad {
-    background: rgb(224, 194, 160);
+    /*background: rgb(224, 194, 160);*/
+  }
+  .clap-pad {
+    /*background: rgb(255, 102, 102);*/
+  }
+  .highhat-pad {
+    /* background: rgb(255, 153, 204);*/
   }
   .kick-pad.active {
     background: rgb(59, 197, 231);
@@ -29,27 +38,34 @@ const Styles = styled.div`
   .hihat-pad.active {
     background: rgb(241, 158, 64);
   }
-
+  .clap-pad.active {
+    background: rgb(210, 11, 13);
+  }
+  .highhat-pad.active {
+    background: rgb(255, 051, 204);
+  }
   .sequencer {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 
   .hihat-track,
   .snare-track,
-  .kick-track {
+  .kick-track,
+  .clap-track,
+  .highhat-track {
     display: flex;
     align-items: center;
     width: 70%;
-    justify-content: space-between;
-    margin-top: 5rem;
   }
   .kick,
   .snare,
-  .hihat {
+  .hihat,
+  .clap,
+  .highhat {
     display: flex;
   }
   .controls {
@@ -83,6 +99,24 @@ const Styles = styled.div`
     border: none;
     cursor: pointer;
     margin-top: 3rem;
+  }
+
+  .save {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background: rgb(88, 88, 88);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 3rem;
+    margin-right: 2rem;
+  }
+
+  .button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
   select {
@@ -125,8 +159,14 @@ const Styles = styled.div`
 
   .controls h1 {
     font-family: Helvetica;
+    font-size: 15px;
     margin-right: 30px;
     width: 60px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -137,6 +177,7 @@ export default class Beat extends React.Component {
     //Event Listeners
     drumKit.pads.forEach((pad) => {
       pad.addEventListener("click", drumKit.activePad);
+      pad.addEventListener("click", drumKit.clickSounds);
       pad.addEventListener("animationend", function () {
         this.style.animation = "";
       });
@@ -145,6 +186,16 @@ export default class Beat extends React.Component {
     drumKit.playBtn.addEventListener("click", function () {
       drumKit.updateBtn();
       drumKit.start();
+    });
+
+    drumKit.saveBtn.addEventListener("click", function () {
+      let preset_info = new Array();
+
+      for (let i = 0; i < 16; i++) {
+        let result_sound = drumKit.saveSounds();
+        if (result_sound.length != 0) preset_info.push(result_sound);
+      }
+      console.log(preset_info);
     });
 
     drumKit.selects.forEach((select) => {
@@ -170,14 +221,9 @@ export default class Beat extends React.Component {
                 <button data-track="0" class="mute kick-volume">
                   <i class="fas fa-volume-mute"></i>
                 </button>
-                <select name="kick-select" id="kick-select">
-                  <option value="./sounds/kick-classic.wav">
-                    Classic Kick
-                  </option>
-                  <option value="./sounds/kick-808.wav">808 Kick</option>
-                  <option value="./sounds/kick-heavy.wav">Kick Heavy</option>
-                  <option value="./sounds/kick-softy.wav">Kick Softy</option>
-                </select>
+                <div name="kick-select" id="kick-select">
+                  <option value="./sounds/kick-classic.wav"></option>
+                </div>
               </div>
               <div class="kick">
                 <div class="pad kick-pad b0"></div>
@@ -188,47 +234,25 @@ export default class Beat extends React.Component {
                 <div class="pad kick-pad b5"></div>
                 <div class="pad kick-pad b6"></div>
                 <div class="pad kick-pad b7"></div>
-              </div>
-            </div>
-            <div class="snare-track">
-              <div class="controls">
-                <h1>Snare</h1>
-                <button data-track="1" class="mute snare-volume">
-                  <i class="fas fa-volume-mute"></i>
-                </button>
-                <select name="snare-select" id="snare-select">
-                  <option value="./sounds/snare-acoustic01.wav">
-                    Classic Snare
-                  </option>
-                  <option value="./sounds/snare-808.wav">808 Snare</option>
-                  <option value="./sounds/snare-vinyl02.wav">
-                    Snare Vinyl
-                  </option>
-                </select>
-              </div>
-              <div class="snare">
-                <div class="pad snare-pad b0"></div>
-                <div class="pad snare-pad b1"></div>
-                <div class="pad snare-pad b2"></div>
-                <div class="pad snare-pad b3"></div>
-                <div class="pad snare-pad b4"></div>
-                <div class="pad snare-pad b5"></div>
-                <div class="pad snare-pad b6"></div>
-                <div class="pad snare-pad b7"></div>
+                <div class="pad kick-pad b8"></div>
+                <div class="pad kick-pad b9"></div>
+                <div class="pad kick-pad b10"></div>
+                <div class="pad kick-pad b11"></div>
+                <div class="pad kick-pad b12"></div>
+                <div class="pad kick-pad b13"></div>
+                <div class="pad kick-pad b14"></div>
+                <div class="pad kick-pad b15"></div>
               </div>
             </div>
             <div class="hihat-track">
               <div class="controls">
-                <h1>Hihat</h1>
-                <button data-track="2" class="mute hihat-volume">
+                <h1>Open High hat</h1>
+                <button data-track="1" class="mute hihat-volume">
                   <i class="fas fa-volume-mute"></i>
                 </button>
-                <select name="hihat-select" id="hihat-select">
-                  <option value="./sounds/hihat-acoustic01.wav">
-                    Hihat Acoustic
-                  </option>
-                  <option value="./sounds/hihat-808.wav">808 Hihat</option>
-                </select>
+                <div name="hihat-select" id="hihat-select">
+                  <option value="./sounds/openhighhat.wav"></option>
+                </div>
               </div>
               <div class="hihat">
                 <div class="pad hihat-pad b0"></div>
@@ -239,9 +263,112 @@ export default class Beat extends React.Component {
                 <div class="pad hihat-pad b5"></div>
                 <div class="pad hihat-pad b6"></div>
                 <div class="pad hihat-pad b7"></div>
+                <div class="pad hihat-pad b8"></div>
+                <div class="pad hihat-pad b9"></div>
+                <div class="pad hihat-pad b10"></div>
+                <div class="pad hihat-pad b11"></div>
+                <div class="pad hihat-pad b12"></div>
+                <div class="pad hihat-pad b13"></div>
+                <div class="pad hihat-pad b14"></div>
+                <div class="pad hihat-pad b15"></div>
               </div>
             </div>
-            <button class="play">Play</button>
+
+            <div class="highhat-track">
+              <div class="controls">
+                <h1> Closed High hat</h1>
+                <button data-track="2" class="mute highhat-volume">
+                  <i class="fas fa-volume-mute"></i>
+                </button>
+                <div name="highhat-select" id="highhat-select">
+                  <option value="./sounds/closedhighhat.wav"></option>
+                </div>
+              </div>
+              <div class="highhat">
+                <div class="pad highhat-pad b0"></div>
+                <div class="pad highhat-pad b1"></div>
+                <div class="pad highhat-pad b2"></div>
+                <div class="pad highhat-pad b3"></div>
+                <div class="pad highhat-pad b4"></div>
+                <div class="pad highhat-pad b5"></div>
+                <div class="pad highhat-pad b6"></div>
+                <div class="pad highhat-pad b7"></div>
+                <div class="pad highhat-pad b8"></div>
+                <div class="pad highhat-pad b9"></div>
+                <div class="pad highhat-pad b10"></div>
+                <div class="pad highhat-pad b11"></div>
+                <div class="pad highhat-pad b12"></div>
+                <div class="pad highhat-pad b13"></div>
+                <div class="pad highhat-pad b14"></div>
+                <div class="pad highhat-pad b15"></div>
+              </div>
+            </div>
+
+            <div class="snare-track">
+              <div class="controls">
+                <h1>Snare</h1>
+                <button data-track="3" class="mute snare-volume">
+                  <i class="fas fa-volume-mute"></i>
+                </button>
+                <div name="snare-select" id="snare-select">
+                  <option value="./sounds/snare-acoustic01.wav"></option>
+                </div>
+              </div>
+              <div class="snare">
+                <div class="pad snare-pad b0"></div>
+                <div class="pad snare-pad b1"></div>
+                <div class="pad snare-pad b2"></div>
+                <div class="pad snare-pad b3"></div>
+                <div class="pad snare-pad b4"></div>
+                <div class="pad snare-pad b5"></div>
+                <div class="pad snare-pad b6"></div>
+                <div class="pad snare-pad b7"></div>
+                <div class="pad snare-pad b8"></div>
+                <div class="pad snare-pad b9"></div>
+                <div class="pad snare-pad b10"></div>
+                <div class="pad snare-pad b11"></div>
+                <div class="pad snare-pad b12"></div>
+                <div class="pad snare-pad b13"></div>
+                <div class="pad snare-pad b14"></div>
+                <div class="pad snare-pad b15"></div>
+              </div>
+            </div>
+
+            <div class="clap-track">
+              <div class="controls">
+                <h1>Clap</h1>
+                <button data-track="4" class="mute clap-volume">
+                  <i class="fas fa-volume-mute"></i>
+                </button>
+                <div name="clap-select" id="clap-select">
+                  <option value="./sounds/clap.wav"></option>
+                </div>
+              </div>
+              <div class="clap">
+                <div class="pad clap-pad b0"></div>
+                <div class="pad clap-pad b1"></div>
+                <div class="pad clap-pad b2"></div>
+                <div class="pad clap-pad b3"></div>
+                <div class="pad clap-pad b4"></div>
+                <div class="pad clap-pad b5"></div>
+                <div class="pad clap-pad b6"></div>
+                <div class="pad clap-pad b7"></div>
+                <div class="pad clap-pad b8"></div>
+                <div class="pad clap-pad b9"></div>
+                <div class="pad clap-pad b10"></div>
+                <div class="pad clap-pad b11"></div>
+                <div class="pad clap-pad b12"></div>
+                <div class="pad clap-pad b13"></div>
+                <div class="pad clap-pad b14"></div>
+                <div class="pad clap-pad b15"></div>
+              </div>
+            </div>
+
+            <div class="button-container">
+              <button class="save">Save</button>
+              <button class="play">Play</button>
+            </div>
+            <div class="arraySync"></div>
           </div>
 
           <audio class="kick-sound" src="./sounds/kick-classic.wav"></audio>
@@ -249,10 +376,9 @@ export default class Beat extends React.Component {
             class="snare-sound"
             src="./sounds/snare-acoustic01.wav"
           ></audio>
-          <audio
-            class="hihat-sound"
-            src="./sounds/hihat-acoustic01.wav"
-          ></audio>
+          <audio class="hihat-sound" src="./sounds/openhighhat.wav"></audio>
+          <audio class="clap-sound" src="./sounds/clap.wav"></audio>
+          <audio class="highhat-sound" src="./sounds/closedhighhat.wav"></audio>
 
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"

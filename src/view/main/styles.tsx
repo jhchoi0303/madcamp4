@@ -15,7 +15,7 @@ export const Image = styled.img`
   height: 300px;
   margin-top: 15rem;
   margin-right: 100rem;
-  animation: ${rotation} 10s infinite;
+  animation: ${rotation} 1s infinite;
 `;
 export const ImageContainer = styled.div`
   display: flex;
