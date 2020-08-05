@@ -24,25 +24,26 @@ const sliderThumbStyles = (props: SliderProps) => `
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  width: 300px;
-  transform: rotate(-90deg);
+  justify-content: center;
+
+  width: 350px;
+
   color: #888;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+
   .value {
     flex: 1;
     font-size: 2rem;
     text-align: center;
-    transform: rotate(-270deg);
   }
   .slider {
-    flex: 5;
+    flex: 3;
     -webkit-appearance: none;
-    width: 100%;
+    width: 300px;
     height: 15px;
     border-radius: 5px;
     background: #efefef;
     outline: none;
+    margin-left: 40px;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
@@ -80,7 +81,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
           max={5}
           value={this.state.value}
           className="slider"
-          onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
+          onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
         />
         <div className="value">{this.state.value}</div>
       </Styles>

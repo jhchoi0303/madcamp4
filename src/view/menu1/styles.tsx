@@ -11,7 +11,7 @@ export const Main = styled.div`
 
 export const PlayerContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: column nowrap;
 `;
 
 export const IntroContainer = styled.div`
@@ -236,4 +236,9 @@ export const JoinButton = styled.button`
     transform: scale(0.9);
   }
   animation: ${bounce} 0.5s ease infinite alternate;
+`;
+
+export const MixerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
