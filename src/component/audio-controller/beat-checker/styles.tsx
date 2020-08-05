@@ -7,4 +7,8 @@ export const BeatChecker =  styled.div`
   align-items: center;
 
   flex-basis: 15%;
+
+  div {
+    font-size: 2rem;
+  }
 `

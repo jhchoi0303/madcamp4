@@ -59,7 +59,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
     super(props);
 
     this.state = {
-      value: 0,
+      value: 100,
     };
   }
 
@@ -75,10 +75,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
           min={0}
           max={100}
           value={this.state.value}
-          className="slider"
+          className="slider master"
           onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
         />
-        <div className="value">{this.state.value}</div>
+        <div className="value master-value">{this.state.value}</div>
       </Styles>
     );
   }

@@ -12,7 +12,7 @@ class BeatChecker extends React.Component<BeatCheckerProps> {
   render() {
     return (
       <S.BeatChecker>
-        <h3>128 bpm</h3>
+        <div id="bpm-box">- bpm</div>
         <span></span>
       </S.BeatChecker>
     )

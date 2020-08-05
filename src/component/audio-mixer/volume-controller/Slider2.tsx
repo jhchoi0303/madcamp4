@@ -74,13 +74,13 @@ class Slider extends React.Component<SliderProps, SliderState> {
       >
         <input
           type="range"
-          min={-20}
-          max={20}
+          min={-100}
+          max={100}
           value={this.state.value}
-          className="slider"
+          className="slider ratio"
           onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
         />
-        <div className="value">{this.state.value}</div>
+        <div className="value ratio-value">{this.state.value}</div>
       </Styles>
     );
   }

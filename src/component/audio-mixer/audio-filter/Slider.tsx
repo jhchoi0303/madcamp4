@@ -76,10 +76,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
           min={-25}
           max={5}
           value={this.state.value}
-          className="slider"
+          className="slider filter"
           onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
         />
-        <div className="value">{this.state.value}</div>
+        <div className="value filter-value">{this.state.value}</div>
       </Styles>
     );
   }

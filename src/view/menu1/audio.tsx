@@ -1,13 +1,15 @@
 import WaveSurfer from 'wavesurfer.js';
 import playImage from '../../images/play-button.png'
-import pauseImage from '../../images/pause.png'
 
 const waveformList: (WaveSurfer | null)[] = [null, null];
+const gainNodeList: (GainNode | null)[] = [null, null];
+const ratioList = [1, 1];
 
 function initAudio() {
   initAudioPlayer();
   initBeatChecker();
   initUrlInputBox();
+  attachRatioSlider();
 }
 
 function initAudioPlayer() {
@@ -16,6 +18,8 @@ function initAudioPlayer() {
   for (let i = 0; i < 2; i++) {
     const playButtonElem = playButtonList[i];
     const waveformID = "waveform-" + i.toString();
+    let color = "#ff6600";
+    if (i == 1) color = "#cc0033";
 
     /* Make waveform */
     waveformList[i] = WaveSurfer.create({
@@ -24,7 +28,7 @@ function initAudioPlayer() {
       cursorWidth: 1,
       backend: 'MediaElement',
       height: 120,
-      progressColor: '#2D5BFF',
+      progressColor: color,
       responsive: true,
       waveColor: '#EFEFEF',
       cursorColor: 'transparent',
@@ -46,6 +50,7 @@ function initUrlInputBox() {
   const buttonList = document.querySelectorAll('.url-box > button') as NodeListOf<HTMLButtonElement>;
   const titleList = document.querySelectorAll('.title') as NodeListOf<HTMLDivElement>;
   const playBtnImageList = document.querySelectorAll('.play-btn img') as NodeListOf<HTMLImageElement>;
+  const bpmElem = document.querySelector('#bpm-box') as HTMLDivElement;
 
   for(let i = 0; i < 2; i++) {
     const inputElem = inputList[i];
@@ -60,6 +65,25 @@ function initUrlInputBox() {
       requestAudio.responseType = "blob";
       requestAudio.onload = () => {
         if (requestAudio.status === 200) {
+          /* Load audio meta data from a server */
+          const requestMeta = new XMLHttpRequest();
+          requestMeta.open("GET", `/api/youtube/download/meta?url=${inputElem.value}`, true);
+          requestMeta.onload = () => {
+            if (requestMeta.status === 200) {
+              const json = JSON.parse(requestMeta.response);
+
+              titleElem.innerHTML = decodeURIComponent(
+                Array.prototype.map.call(atob(json.title), function(c) {
+                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+                }).join('')
+              );
+
+              bpmElem.innerHTML = json.bpm + " bpm";
+              console.log(json.bpm);
+            }
+          }
+          requestMeta.send();
+
           waveformList[i]?.load(URL.createObjectURL(requestAudio.response));
           /* Attach audio filter */
           attachFilter(i);
@@ -69,22 +93,6 @@ function initUrlInputBox() {
       };
       requestAudio.send();
 
-      /* Load audio meta data from a server */
-      const requestMeta = new XMLHttpRequest();
-      requestMeta.open("GET", `/api/youtube/download/meta?url=${inputElem.value}`, true);
-      requestMeta.onload = () => {
-        if (requestMeta.status === 200) {
-          const json = JSON.parse(requestMeta.response);
-
-          titleElem.innerHTML = decodeURIComponent(
-            Array.prototype.map.call(atob(json.title), function(c) {
-              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            }).join('')
-          );
-        }
-      }
-      requestMeta.send();
-
       /* Initialize play button image */
       playBtnImageElem.setAttribute('src', `${playImage}`);
     });
@@ -93,7 +101,8 @@ function initUrlInputBox() {
 
 function attachFilter(index: number) {
   let audioElem = document.querySelectorAll('.waveform audio')[index] as HTMLAudioElement;
-  const sliderElemList = document.querySelectorAll('.slider') as NodeListOf<HTMLInputElement>;
+  const filterSliderElemList = document.querySelectorAll('.slider.filter') as NodeListOf<HTMLInputElement>;
+  const masterSliderElemList = document.querySelectorAll('.slider.master') as NodeListOf<HTMLInputElement>;
 
   if (audioElem == null) {
     index = 0;
@@ -113,6 +122,9 @@ function attachFilter(index: number) {
   const biquadFilterMiddle = audioContext.createBiquadFilter();
   const biquadFilterLow = audioContext.createBiquadFilter();
   const gainNode = audioContext.createGain();
+
+  gainNodeList[index] = gainNode;
+  gainNode.gain.value = ratioList[index] * parseInt(masterSliderElemList[index].value);
   
   /* Biquad filter */
   /* freq: 0 ~ 24000 */
@@ -123,9 +135,9 @@ function attachFilter(index: number) {
   biquadFilterHigh.frequency.value = 3200.0;
   biquadFilterMiddle.frequency.value = 1000.0;
   biquadFilterLow.frequency.value = 320.0;
-  biquadFilterHigh.gain.value = parseInt(sliderElemList[sliderIndex].value);
-  biquadFilterMiddle.gain.value = parseInt(sliderElemList[sliderIndex + 1].value);
-  biquadFilterLow.gain.value = parseInt(sliderElemList[sliderIndex + 2].value);
+  biquadFilterHigh.gain.value = parseInt(filterSliderElemList[sliderIndex].value);
+  biquadFilterMiddle.gain.value = parseInt(filterSliderElemList[sliderIndex + 1].value);
+  biquadFilterLow.gain.value = parseInt(filterSliderElemList[sliderIndex + 2].value);
   
   audioSourceNode
   .connect(analyser)
@@ -134,28 +146,58 @@ function attachFilter(index: number) {
   .connect(biquadFilterLow)
   .connect(gainNode)
   .connect(audioDestination);
-  
-  sliderElemList[sliderIndex].addEventListener('change',(ev) => {
+
+  filterSliderElemList[sliderIndex].addEventListener('mousemove',(ev) => {
     const element = ev.target as HTMLInputElement;
     
     if (element != null) {
       biquadFilterHigh.gain.value = parseInt(element.value);
     }
   });
-  sliderElemList[sliderIndex + 1].addEventListener('change', (ev) => {
+  filterSliderElemList[sliderIndex + 1].addEventListener('mousemove', (ev) => {
     const element = ev.target as HTMLInputElement;
     
     if (element != null) {
       biquadFilterMiddle.gain.value = parseInt(element.value);
     }
   });
-  sliderElemList[sliderIndex + 2].addEventListener('change', (ev) => {
+  filterSliderElemList[sliderIndex + 2].addEventListener('mousemove', (ev) => {
     const element = ev.target as HTMLInputElement;
     
     if (element != null) {
       biquadFilterLow.gain.value = parseInt(element.value);
     }
   });
+
+  masterSliderElemList[index].addEventListener('mousemove', (ev) => {
+    const element = ev.target as HTMLInputElement;
+
+    if (element != null) {
+      gainNode.gain.value = parseInt(element.value) / 100;
+    }
+  })
+}
+
+function attachRatioSlider() {
+  const ratioSliderElem = document.querySelector('.slider.ratio') as HTMLInputElement;
+  const masterSliderElemList = document.querySelectorAll('.slider.master') as NodeListOf<HTMLInputElement>;
+
+  ratioSliderElem.addEventListener('mousemove', (ev) => {
+    const value = parseInt(ratioSliderElem.value) / 100;
+
+    if (value < 0) {
+      ratioList[1] = 1+value;
+      ratioList[0] = 1;
+    } else {
+      ratioList[0] = 1-value;
+      ratioList[1] = 1;
+    }
+    
+    for (let i = 0; i < 2; i++) {
+      const gainNode = gainNodeList[i] as GainNode;
+      gainNode.gain.value = ratioList[i] * parseInt(masterSliderElemList[i].value) / 100;
+    }
+  })
 }
   
 export default initAudio;
