@@ -1,4 +1,5 @@
 import React from "react"
+import * as S from "./styles"
 
 interface BeatCheckerProps {
 }
@@ -10,7 +11,10 @@ class BeatChecker extends React.Component<BeatCheckerProps> {
 
   render() {
     return (
-      <span>128 bpm</span>
+      <S.BeatChecker>
+        <h3>128 bpm</h3>
+        <span></span>
+      </S.BeatChecker>
     )
   }
 }
