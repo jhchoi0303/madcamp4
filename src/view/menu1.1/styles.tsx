@@ -14,7 +14,8 @@ export const Section = styled.div`
   width: 100%;
   margin-bottom: 5rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     margin-bottom: 30rem;
     flex-direction: row-reverse;
