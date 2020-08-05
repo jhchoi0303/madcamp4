@@ -61,11 +61,19 @@ export const PlayButton = styled.button`
   cursor: pointer;
   padding-bottom: 3px;
 
+  img {
+    resize: both;
+    height: 30%;
+  }
+
   &:hover {
     background: #DDD;
   }
 `
 
 export const TitleBox = styled.div`
+  margin: 20px 0 0;
   height:50px;
+  text-align: center;
+  font-size: 1.5rem;
 `

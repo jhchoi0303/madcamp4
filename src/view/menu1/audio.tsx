@@ -1,4 +1,6 @@
 import WaveSurfer from 'wavesurfer.js';
+import playImage from '../../images/play-button.png'
+import pauseImage from '../../images/pause.png'
 
 const waveformList: (WaveSurfer | null)[] = [null, null];
 
@@ -42,10 +44,14 @@ function initBeatChecker() {
 function initUrlInputBox() {
   const inputList = document.querySelectorAll('.url-box > input') as NodeListOf<HTMLInputElement>;
   const buttonList = document.querySelectorAll('.url-box > button') as NodeListOf<HTMLButtonElement>;
+  const titleList = document.querySelectorAll('.title') as NodeListOf<HTMLDivElement>;
+  const playBtnImageList = document.querySelectorAll('.play-btn img') as NodeListOf<HTMLImageElement>;
 
   for(let i = 0; i < 2; i++) {
     const inputElem = inputList[i];
     const buttonElem = buttonList[i];
+    const titleElem = titleList[i];
+    const playBtnImageElem = playBtnImageList[i];
 
     buttonElem.addEventListener('click', (ev) => {
       /* Load audio from a server */
@@ -64,8 +70,23 @@ function initUrlInputBox() {
       requestAudio.send();
 
       /* Load audio meta data from a server */
+      const requestMeta = new XMLHttpRequest();
+      requestMeta.open("GET", `/api/youtube/download/meta?url=${inputElem.value}`, true);
+      requestMeta.onload = () => {
+        if (requestMeta.status === 200) {
+          const json = JSON.parse(requestMeta.response);
 
-      
+          titleElem.innerHTML = decodeURIComponent(
+            Array.prototype.map.call(atob(json.title), function(c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            }).join('')
+          );
+        }
+      }
+      requestMeta.send();
+
+      /* Initialize play button image */
+      playBtnImageElem.setAttribute('src', `${playImage}`);
     });
   }
 }
