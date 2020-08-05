@@ -237,3 +237,8 @@ export const JoinButton = styled.button`
   }
   animation: ${bounce} 0.5s ease infinite alternate;
 `;
+
+export const MixerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
