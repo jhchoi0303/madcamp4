@@ -12,9 +12,13 @@ class UrlInputBox extends React.Component<UrlInputBoxProps, UrlInputBoxState> {
     super(props);
   }
 
+  handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
+
   render() {
     return (
-      <S.URLInputBoxForm>
+      <S.URLInputBoxForm className="url-box" onSubmit={this.handleSubmit}>
         <input type="text" placeholder="Youtube URL"/>
         <button>Load</button>
       </S.URLInputBoxForm>

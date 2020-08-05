@@ -11,8 +11,8 @@ interface SliderState {
 }
 
 const sliderThumbStyles = (props: SliderProps) => `
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: ${props.color};
   cursor: pointer;
   outline: 5px solid #333;
@@ -29,6 +29,7 @@ const Styles = styled.div`
   color: #888;
 
   .value {
+  
     flex: 1;
     font-size: 2rem;
     text-align: center;
@@ -60,10 +61,6 @@ class Slider extends React.Component<SliderProps, SliderState> {
     this.state = {
       value: 0,
     };
-  }
-
-  componentDidMount() {
-    console.log("hello slider");
   }
 
   render() {

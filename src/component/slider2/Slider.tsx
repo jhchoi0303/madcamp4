@@ -62,10 +62,6 @@ class Slider extends React.Component<SliderProps, SliderState> {
     };
   }
 
-  componentDidMount() {
-    console.log("hello slider");
-  }
-
   render() {
     const value = this.state.value;
     return (

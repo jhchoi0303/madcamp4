@@ -47,7 +47,6 @@ class DrumKit {
     if (this.isPlaying) {
       //Clear the interval
       clearInterval(this.isPlaying);
-      console.log(this.isPlaying);
       this.isPlaying = null;
     } else {
       this.isPlaying = setInterval(() => {
