@@ -16,5 +16,5 @@ export const LayoutBorder = styled.div`
 
 export const LayoutContainer = styled.div`
   width: 100%;
-  margin-bottom: 6rem;
+  // margin-bottom: 6rem;
 `;

@@ -45,11 +45,11 @@ class UrlInputBox extends React.Component<UrlInputBoxProps, UrlInputBoxState> {
 
     requestAudio.open("GET", `/api/youtube/download?url=${url}`, true);
     requestAudio.responseType = "blob";
-    requestAudio.onload = function() {
-      if (this.status === 200) {
+    requestAudio.onload = () => {
+      if (requestAudio.status === 200) {
         const audio = document.querySelectorAll(".audio")[index] as HTMLAudioElement;
         if (audio != null) {
-          audio.setAttribute("src", URL.createObjectURL(this.response));
+          audio.setAttribute("src", URL.createObjectURL(requestAudio.response));
           audio.load();
           alert("Loading success");
         }
