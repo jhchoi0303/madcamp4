@@ -57,6 +57,7 @@ export const DesktopLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: none;
+  width: 180px;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     display: block;
   }
@@ -98,12 +99,7 @@ export const Option = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  :hover ${Content} {
-    display: block;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   color: white;
 `;
 
@@ -123,11 +119,19 @@ export const Buttons = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  :hover ${Content} {
+    display: block;
+    display: flex;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
     color: white;
   }
   @keyframes increase {
     100% {
-      width: 20rem;
+      width: 15rem;
     }
   }
   @media only screen and (min-width: ${BREAKPOINT}px) {

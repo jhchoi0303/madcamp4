@@ -11,7 +11,7 @@ const Main: React.FC = () => {
         <S.Section>
           <S.RecordPlayer>
             <S.Text>
-              <S.Title>YOU DJ</S.Title>
+              <S.Title>maDDDDDj</S.Title>
               <S.Content>Ultimate online DJ mixer</S.Content>
             </S.Text>
           </S.RecordPlayer>

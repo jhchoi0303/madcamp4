@@ -56,7 +56,7 @@ export const MobileLink = styled(Link)`
 `;
 
 export const Buttons = styled.button`
-  margin-right: 0.2rem;
+  margin-right: 1rem;
   outline: none;
   background-color: inherit;
   font-size: 1.2rem;
