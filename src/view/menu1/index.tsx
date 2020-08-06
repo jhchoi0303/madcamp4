@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../component/layout";
 import AudioController from "../../component/audio-controller";
 import AudioMixer from "../../component/audio-mixer";
+import CueArea from "../../component/cue-area";
 
 import * as S from "./styles";
 
@@ -22,6 +23,7 @@ const Menu1: React.FC = () => {
         <S.PlayerContainer>
           <AudioController/>
           <AudioMixer/>
+          <CueArea/>
         </S.PlayerContainer>
       </S.Main>
     </Layout>
