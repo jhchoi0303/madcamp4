@@ -4,16 +4,12 @@ class DrumKit {
     this.saveBtn = document.querySelector(".save");
     this.playBtn = document.querySelector(".play");
     this.arraySync = document.querySelector(".arraySync");
-    this.currentKick = "./sounds/kick-classic.wav";
-    this.currentSnare = "./sounds/snare-acoustic01.wav";
-    this.currentHihat = "./sounds/openhighhat.wav";
-    this.currentClap = "./sounds/clap.wav";
-    this.currentHighhat = "./sounds/closedhighhat.wav";
-    this.kickAudio = document.querySelector(".kick-sound");
-    this.snareAudio = document.querySelector(".snare-sound");
-    this.hihatAudio = document.querySelector(".hihat-sound");
-    this.clapAudio = document.querySelector(".clap-sound");
-    this.highhatAudio = document.querySelector(".highhat-sound");
+    this.currentWoojung = "./sounds/tummy02.wav";
+    this.currentJihyun = "./sounds/tummy01.wav";
+
+    this.WoojungAudio = document.querySelector(".Woojung-sound");
+    this.JihyunAudio = document.querySelector(".Jihyun-sound");
+
     this.index = 0;
     this.bpm = 300;
     this.isPlaying = null;
@@ -24,44 +20,35 @@ class DrumKit {
     this.classList.toggle("active");
   }
   arrayCheck() {
-    if (this.classList.contains("kick-pad")) {
-      var kickAudio = new Audio("./sounds/kick-classic.wav");
-      kickAudio.play();
+    if (this.classList.contains("Woojung-pad")) {
+      var WoojungAudio = new Audio("./sounds/tummy02.wav");
+      WoojungAudio.play();
     }
   }
   saveSounds() {
     let arr = new Array();
     let step = this.index++ % 16;
-    const bar = document.querySelector(`.b${step}`);
-    if (bar.classList.contains("active")) {
-      if (bar.classList.contains("kick-pad")) {
-        arr = [0, step * 0.0625];
+    const bar = document.querySelectorAll(`.b${step}`);
+    for (var i = 0; i < bar.length; i++) {
+      if (bar[i].classList.contains("active")) {
+        if (bar[i].classList.contains("Woojung-pad")) {
+          arr.push([0, step * 0.0625]);
+        } else if (bar[i].classList.contains("Jihyun-pad")) {
+          arr.push([1, step * 0.0625]);
+        }
       }
+      return arr;
     }
-
-    return arr;
   }
 
   clickSounds() {
-    if (this.classList.contains("kick-pad")) {
-      var kickAudio = new Audio("./sounds/kick-classic.wav");
-      kickAudio.play();
+    if (this.classList.contains("Woojung-pad")) {
+      var WoojungAudio = new Audio("./sounds/tummy02.wav");
+      WoojungAudio.play();
     }
-    if (this.classList.contains("snare-pad")) {
-      var snareAudio = new Audio("./sounds/snare-acoustic01.wav");
-      snareAudio.play();
-    }
-    if (this.classList.contains("hihat-pad")) {
-      var hihatAudio = new Audio("./sounds/openhighhat.wav");
-      hihatAudio.play();
-    }
-    if (this.classList.contains("clap-pad")) {
-      var clapAudio = new Audio("./sounds/clap.wav");
-      clapAudio.play();
-    }
-    if (this.classList.contains("highhat-pad")) {
-      var highhatAudio = new Audio("./sounds/closedhighhat.wav");
-      highhatAudio.play();
+    if (this.classList.contains("Jihyun-pad")) {
+      var JihyunAudio = new Audio("./sounds/tummy01.wav");
+      JihyunAudio.play();
     }
   }
   repeat() {
@@ -69,32 +56,21 @@ class DrumKit {
     const activeBars = document.querySelectorAll(`.b${step}`);
     //Loop over the pads
     activeBars.forEach((bar) => {
-      bar.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
+      bar.style.animation = `playTrack 1s alternate ease-in-out 0.1`;
       if (bar.classList.contains("active")) {
-        if (bar.classList.contains("kick-pad")) {
-          this.kickAudio.currentTime = 0;
-          this.kickAudio.play();
+        if (bar.classList.contains("Woojung-pad")) {
+          this.WoojungAudio.currentTime = 0;
+          this.WoojungAudio.play();
         }
-        if (bar.classList.contains("snare-pad")) {
-          this.snareAudio.currentTime = 0;
-          this.snareAudio.play();
-        }
-        if (bar.classList.contains("hihat-pad")) {
-          this.hihatAudio.currentTime = 0;
-          this.hihatAudio.play();
-        }
-        if (bar.classList.contains("clap-pad")) {
-          this.clapAudio.currentTime = 0;
-          this.clapAudio.play();
-        }
-        if (bar.classList.contains("highhat-pad")) {
-          this.highhatAudio.currentTime = 0;
-          this.highhatAudio.play();
+        if (bar.classList.contains("Jihyun-pad")) {
+          this.JihyunAudio.currentTime = 0;
+          this.JihyunAudio.play();
         }
       }
     });
     this.index++;
   }
+
   start() {
     const interval = (60 / this.bpm) * 1000;
     //Check if it's playing
@@ -127,19 +103,12 @@ class DrumKit {
     const selectionName = e.target.name;
     const selectionValue = e.target.value;
     switch (selectionName) {
-      case "kick-select":
-        this.kickAudio.src = selectionValue;
+      case "Woojung-select":
+        this.WoojungAudio.src = selectionValue;
         break;
-      case "snare-select":
-        this.snareAudio.src = selectionValue;
+      case "Jihyun-select":
+        this.JihyunAudio.src = selectionValue;
         break;
-      case "hihat-select":
-        this.hihatAudio.src = selectionValue;
-        break;
-      case "clap-select":
-        this.clapAudio.src = selectionValue;
-      case "highhat-select":
-        this.highhatAudio.src = selectionValue;
     }
   }
   mute(e) {
@@ -148,37 +117,19 @@ class DrumKit {
     if (e.target.classList.contains("active")) {
       switch (muteIndex) {
         case "0":
-          this.kickAudio.volume = 0;
+          this.WoojungAudio.volume = 0;
           break;
         case "1":
-          this.hihatAudio.volume = 0;
-          break;
-        case "2":
-          this.snareAudio.volume = 0;
-          break;
-        case "3":
-          this.clapAudio.volume = 0;
-          break;
-        case "4":
-          this.highhatAudio.volume = 0;
+          this.JihyunAudio.volume = 0;
           break;
       }
     } else {
       switch (muteIndex) {
         case "0":
-          this.kickAudio.volume = 1;
+          this.WoojungAudio.volume = 2;
           break;
         case "1":
-          this.snareAudio.volume = 1;
-          break;
-        case "2":
-          this.hihatAudio.volume = 1;
-          break;
-        case "3":
-          this.clapAudio.volume = 1;
-          break;
-        case "4":
-          this.highhatAudio.volume = 1;
+          this.JihyunAudio.volume = 2;
           break;
       }
     }

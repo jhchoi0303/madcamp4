@@ -224,7 +224,7 @@ export default class Beat2 extends React.Component {
             <div class="Jihyun-track">
               <div class="controls">
                 <h1>Jihyun</h1>
-                <button data-track="4" class="mute Jihyun-volume">
+                <button data-track="1" class="mute Jihyun-volume">
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="Jihyun-select" id="Jihyun-select">
@@ -258,11 +258,7 @@ export default class Beat2 extends React.Component {
             <div class="arraySync"></div>
           </div>
 
-          <audio
-            class="Woojung-sound"
-            src="./sounds/Woojung-classic.wav"
-          ></audio>
-          <audio class="snare-sound" src="./sounds/tummy02.wav"></audio>
+          <audio class="Woojung-sound" src="./sounds/tummy02.wav"></audio>
           <audio class="Jihyun-sound" src="./sounds/tummy01.wav"></audio>
 
           <script

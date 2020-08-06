@@ -33,22 +33,17 @@ class DrumKit {
     let arr = new Array();
     let step = this.index++ % 16;
     const bar = document.querySelectorAll(`.b${step}`);
-    for(var i=0; i<bar.length; i++)
-    {
+    for (var i = 0; i < bar.length; i++) {
       if (bar[i].classList.contains("active")) {
         if (bar[i].classList.contains("kick-pad")) {
           arr.push([0, step * 0.0625]);
-        }
-        else if (bar[i].classList.contains("hihat-open-pad")) {
+        } else if (bar[i].classList.contains("hihat-open-pad")) {
           arr.push([1, step * 0.0625]);
-        }
-        else if (bar[i].classList.contains("hihat-closed-pad")) {
+        } else if (bar[i].classList.contains("hihat-closed-pad")) {
           arr.push([2, step * 0.0625]);
-        }
-        else if (bar[i].classList.contains("snare-pad")) {
+        } else if (bar[i].classList.contains("snare-pad")) {
           arr.push([3, step * 0.0625]);
-        }
-        else if (bar[i].classList.contains("clap-pad")) {
+        } else if (bar[i].classList.contains("clap-pad")) {
           arr.push([4, step * 0.0625]);
         }
       }
@@ -65,7 +60,7 @@ class DrumKit {
       var snareAudio = new Audio("./sounds/snare-acoustic01.wav");
       snareAudio.play();
     }
-    if (this.classList.contains("hihat-pad")) {
+    if (this.classList.contains("hihat-open-pad")) {
       var hihatAudio = new Audio("./sounds/openhighhat.wav");
       hihatAudio.play();
     }
@@ -73,7 +68,7 @@ class DrumKit {
       var clapAudio = new Audio("./sounds/clap.wav");
       clapAudio.play();
     }
-    if (this.classList.contains("highhat-pad")) {
+    if (this.classList.contains("hihat-closed-pad")) {
       var highhatAudio = new Audio("./sounds/closedhighhat.wav");
       highhatAudio.play();
     }

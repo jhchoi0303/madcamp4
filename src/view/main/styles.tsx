@@ -5,10 +5,28 @@ import { fadeIn, rotation } from "../../animation/keyframe";
 export const Main = styled.div`
   width: 100%;
   height: 100%;
+  background-image: url("https://media1.giphy.com/media/TgMIg9SjkWVFhJWnv5/giphy.gif?cid=ecf05e4746edfeb919e81ecd1e0bb1be70d22c123337a22c&rid=giphy.gif");
+  background-size: cover;
   margin-top: 1rem;
   animation: ${fadeIn} 1s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
   }
+`;
+export const Title = styled.div`
+  width: 100%;
+  height: 50px;
+  color: white;
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 60px;
+  margin-bottom: 40px;
+`;
+export const Content = styled.div`
+  width: 100%;
+  height: 50px;
+  color: white;
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
 `;
 export const Image = styled.img`
   width: 400px;
@@ -24,30 +42,31 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(220, 220, 220, 0.5);
+  background-color: rgb(220, 220, 220, 0.1);
 
   border-radius: 225px;
 `;
 export const Text = styled.div`
-  width: 300px;
+  width: 100%;
   height: 400px;
 
   color: white;
   font-size: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  border-radius: 20px;
+  background: #ffffff;
+  background: rgba(0, 0, 0, 0.7);
 `;
 export const RecordPlayer = styled.div`
-  width: 1000px;
+  width: 100%;
   height: 600px;
   margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: grey;
+
   border-radius: 20px;
 `;
 export const Section = styled.div`
@@ -58,6 +77,7 @@ export const Section = styled.div`
   justify-content: center;
   align-content: center;
 
+  animation: ${fadeIn} 2s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     align-items: center;
   }
