@@ -50,12 +50,10 @@ const Styles = styled.div`
     display: flex;
     min-height: 30vh;
     background: transparent;
-
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
   }
-
   .hihat-open-track,
   .snare-track,
   .kick-track,
@@ -74,9 +72,7 @@ const Styles = styled.div`
   }
   .controls {
     display: flex;
-
     align-items: center;
-
     margin: 0rem 2rem;
     width: 240px;
   }
@@ -90,11 +86,9 @@ const Styles = styled.div`
     transition: all 0.5s ease;
     margin-right: 30px;
   }
-
   .pad {
     transition: all 0.5s ease;
   }
-
   .play {
     padding: 1rem 2rem;
     font-size: 1.5rem;
@@ -104,7 +98,6 @@ const Styles = styled.div`
     cursor: pointer;
     margin-top: 3rem;
   }
-
   .save {
     padding: 1rem 2rem;
     font-size: 1.5rem;
@@ -115,23 +108,19 @@ const Styles = styled.div`
     margin-top: 3rem;
     margin-right: 2rem;
   }
-
   .button-container {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-
   select {
     padding: 1rem;
     font-size: 1rem;
   }
-
   .mute.active {
     background: rgb(182, 182, 182);
   }
-
   .tempo {
     margin: 3rem;
     width: 30%;
@@ -151,7 +140,6 @@ const Styles = styled.div`
     margin: 2rem;
     text-align: center;
   }
-
   @keyframes playTrack {
     from {
       transform: scale(1);
@@ -160,7 +148,6 @@ const Styles = styled.div`
       transform: scale(1.2);
     }
   }
-
   body {
     background-color: black;
     background-opacity: 0.6;

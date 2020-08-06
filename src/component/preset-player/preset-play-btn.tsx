@@ -36,7 +36,7 @@ function play_preset(): void // no ';' here
   const bpmBoxElem = document.querySelector("#bpm-box") as HTMLDivElement;
   
   let bpm : number = parseInt(bpmBoxElem.innerHTML.split(" bpm")[0]);
-  if (isNaN(bpm)) bpm = 95;
+  if (isNaN(bpm) || bpm == 0) bpm = 95;
 
   let one_bar_length : number = 60 / bpm * 4;
 

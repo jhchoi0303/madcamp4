@@ -4,6 +4,7 @@ import playImage from "../../images/play-button.png";
 const waveformList: (WaveSurfer | null)[] = [null, null];
 const gainNodeList: (GainNode | null)[] = [null, null];
 const ratioList = [1, 1];
+const audioList: (HTMLAudioElement | null)[] = [null, null];
 
 let playingBPM = 0;
 const bpmList = [0, 0];
@@ -127,15 +128,16 @@ function initUrlInputBox() {
 
           /* Load audio file from the server */
           waveformList[i]?.load(URL.createObjectURL(requestAudio.response));
+          let audioElem = document.querySelectorAll('.waveform audio')[i] as HTMLAudioElement;
+          if (audioElem == null)
+            audioElem = document.querySelector('.waveform audio') as HTMLAudioElement;
+          audioList[i] = audioElem;
 
           /* Attach audio filter */
           attachFilter(i);
 
           /* Initialize a play button image */
           playBtnImageElem.setAttribute('src', `${playImage}`);
-          let audioElem = document.querySelectorAll('.waveform audio')[i] as HTMLAudioElement;
-          if (audioElem == null)
-            audioElem = document.querySelector('.waveform audio') as HTMLAudioElement;
           audioElem.addEventListener("ended", (ev) => {
             playBtnImageElem.setAttribute("src", `${playImage}`);
           });
@@ -149,22 +151,13 @@ function initUrlInputBox() {
 }
 
 function attachFilter(index: number) {
-  let audioElem = document.querySelectorAll(".waveform audio")[
-    index
-  ] as HTMLAudioElement;
+  const audioElem = audioList[index] as HTMLAudioElement;
   const filterSliderElemList = document.querySelectorAll(
     ".slider.filter"
   ) as NodeListOf<HTMLInputElement>;
   const masterSliderElemList = document.querySelectorAll(
     ".slider.master"
   ) as NodeListOf<HTMLInputElement>;
-
-  if (audioElem == null) {
-    index = 0;
-    audioElem = document.querySelectorAll(".waveform audio")[
-      index
-    ] as HTMLAudioElement;
-  }
 
   let sliderIndex = index * 3;
 
@@ -234,7 +227,7 @@ function attachFilter(index: number) {
     const element = ev.target as HTMLInputElement;
 
     if (element != null) {
-      gainNode.gain.value = parseInt(element.value) / 100;
+      gainNode.gain.value = ratioList[index] * parseInt(element.value) / 100;
     }
   });
 }
@@ -261,6 +254,8 @@ function attachRatioSlider() {
     for (let i = 0; i < 2; i++) {
       const gainNode = gainNodeList[i] as GainNode;
 
+      console.log(gainNodeList);
+
       if (gainNode != null)
         gainNode.gain.value =
           (ratioList[i] * parseInt(masterSliderElemList[i].value)) / 100;
@@ -269,16 +264,12 @@ function attachRatioSlider() {
 }
 
 function setBPM(index: number) {
-  const audioElemList = document.querySelectorAll(
-    ".waveform audio"
-  ) as NodeListOf<HTMLAudioElement>;
-  const audioElem = audioElemList[index];
+  const audioElem = audioList[index];
+  const otherAudioElem = audioList[(index + 1) % 2];
 
   if (audioElem == null) return;
 
   if (audioElem.paused) {
-    const otherAudioElem = audioElemList[(index + 1) % 2];
-
     audioElem.playbackRate = 1;
 
     if (otherAudioElem == null) playingBPM = 0;
@@ -290,7 +281,7 @@ function setBPM(index: number) {
     if (playingBPM == 0) {
       playingBPM = bpmList[index];
     } else {
-      audioElemList[index].playbackRate = playingBPM / bpmList[index];
+      audioElem.playbackRate = playingBPM / bpmList[index];
     }
   }
 
@@ -301,9 +292,8 @@ function setBPM(index: number) {
 function setSync(index: number) {
   const otherIndex = (index + 1) % 2;
 
-  const audioElemList = document.querySelectorAll('.waveform audio') as NodeListOf<HTMLAudioElement>;
-  const audioElem = audioElemList[index];
-  const otherAudioElem = audioElemList[otherIndex];
+  const audioElem = audioList[index] as HTMLAudioElement;
+  const otherAudioElem = audioList[otherIndex] as HTMLAudioElement;
 
   const interval = 60 / playingBPM;
   
@@ -343,6 +333,8 @@ function initTimeBox() {
 
       if (audioElem == null)
         audioElem = audioList[0] as HTMLAudioElement;
+      if (audioElem == null)
+        return;
 
       const currentTime = Math.trunc(audioElem.currentTime);
       let sec = (currentTime % 60).toString();
@@ -391,7 +383,7 @@ function initCue() {
 
       const cueElem = cueElemList[i] as HTMLButtonElement;
       const timeBoxElem = document.querySelectorAll('.time-box')[Math.trunc(i / 5)] as HTMLDivElement;
-      
+
       if (timeBoxElem.innerHTML.split(' / ')[1] == "0:00") return;
 
       /* Get audio elem */
