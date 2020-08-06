@@ -8,13 +8,16 @@ const ratioList = [1, 1];
 let playingBPM = 0;
 const bpmList = [0, 0];
 const syncList:number[][][] | null[] = [null, null];
-const intervalList: number[] = [0, 0];
+
+const cueTimeList:number[] = [0, -1, -1, -1, -1, 0, -1, -1, -1, -1];
 
 function initAudio() {
   initAudioPlayer();
   initBeatChecker();
   initUrlInputBox();
   attachRatioSlider();
+  initTimeBox();
+  initCue();
 }
 
 function initAudioPlayer() {
@@ -32,13 +35,13 @@ function initAudioPlayer() {
     waveformList[i] = WaveSurfer.create({
       container: "#" + waveformID,
       barWidth: 3,
-      cursorWidth: 1,
+      cursorWidth: 2,
       backend: "MediaElement",
       height: 120,
       progressColor: color,
       responsive: true,
       waveColor: "#EFEFEF",
-      cursorColor: "transparent",
+      cursorColor: "#888888",
     });
 
     /* Init play button */
@@ -65,12 +68,16 @@ function initUrlInputBox() {
   const playBtnImageList = document.querySelectorAll(
     ".play-btn img"
   ) as NodeListOf<HTMLImageElement>;
+  const timeBoxList = document.querySelectorAll(
+    ".time-box"
+  ) as NodeListOf<HTMLDivElement>;
 
   for (let i = 0; i < 2; i++) {
     const inputElem = inputList[i];
     const buttonElem = buttonList[i];
     const titleElem = titleList[i];
     const playBtnImageElem = playBtnImageList[i];
+    const timeBoxElem = timeBoxList[i];
 
     buttonElem.addEventListener("click", (ev) => {
       /* Load audio from a server */
@@ -106,7 +113,14 @@ function initUrlInputBox() {
 
               bpmList[i] = json.bpm;
               syncList[i] = json.sync_info;
-              console.log(json.sync_info);
+              
+              /* Initialize a time box */
+              const duration = json.duration;
+              let sec = (duration % 60).toString();
+              if (parseInt(sec) < 10)
+                sec = "0" + sec;
+
+              timeBoxElem.innerHTML = `0:00 / ${Math.trunc(duration / 60)}:${sec}`
             }
           };
           requestMeta.send();
@@ -311,6 +325,92 @@ function setSync(index: number) {
 
     audioElem.currentTime = enterBeat * interval + offset;
   }
+}
+
+function initTimeBox() {
+  const timeBoxList = document.querySelectorAll('.time-box');
+
+  for (let i = 0; i < 2; i++) {
+    const timeBoxElem = timeBoxList[i];
+
+    setInterval(() => {
+      const audioList = document.querySelectorAll('.waveform audio');
+      let audioElem = audioList[i] as HTMLAudioElement;
+      const duration = timeBoxElem.innerHTML.split('/')[1]
+      
+      if (duration == " 0:00")
+        return;
+
+      if (audioElem == null)
+        audioElem = audioList[0] as HTMLAudioElement;
+
+      const currentTime = Math.trunc(audioElem.currentTime);
+      let sec = (currentTime % 60).toString();
+      if (parseInt(sec) < 10)
+        sec = "0" + sec;
+
+      timeBoxElem.innerHTML = `${Math.trunc(currentTime / 60)}:${sec} / ${duration}`;
+    }, 0.25);
+  }
+}
+
+function initCue() {
+  const cueElemList = document.querySelectorAll(".cue");
+
+  for (let i = 0; i < 10; i++) {
+    const cueElem = cueElemList[i] as HTMLButtonElement;
+    const timeBoxElem = document.querySelectorAll('.time-box')[Math.trunc(i / 5)] as HTMLDivElement;
+
+    cueElem.addEventListener("click", (ev) => {
+      if (timeBoxElem.innerHTML.split(' / ')[1] == "0:00") return;
+
+      /* Get audio elem */
+      const audioList = document.querySelectorAll('.waveform audio');
+      let audioElem = audioList[Math.trunc(i / 5)] as HTMLAudioElement;
+      if (audioElem == null) audioElem = audioList[0] as HTMLAudioElement;
+      
+      if (cueTimeList[i] < 0) {
+        /* Allocate a cue */
+        cueElem.innerHTML = timeBoxElem.innerHTML.split(' / ')[0];
+        cueTimeList[i] = audioElem.currentTime;
+      }
+      else {
+        /* Move to that time */
+        audioElem.currentTime = cueTimeList[i];
+        setSync(Math.trunc(i / 5));
+      }
+    })
+  }
+
+  document.addEventListener("keydown", (ev) => {
+    const keyCode = ev.keyCode;
+    
+    if (48 <= keyCode && keyCode < 58) {
+      let i = keyCode - 49;
+      if (i < 0) i = 9;
+
+      const cueElem = cueElemList[i] as HTMLButtonElement;
+      const timeBoxElem = document.querySelectorAll('.time-box')[Math.trunc(i / 5)] as HTMLDivElement;
+      
+      if (timeBoxElem.innerHTML.split(' / ')[1] == "0:00") return;
+
+      /* Get audio elem */
+      const audioList = document.querySelectorAll('.waveform audio');
+      let audioElem = audioList[Math.trunc(i / 5)] as HTMLAudioElement;
+      if (audioElem == null) audioElem = audioList[0] as HTMLAudioElement;
+      
+      if (cueTimeList[i] < 0) {
+        /* Allocate a cue */
+        cueElem.innerHTML = timeBoxElem.innerHTML.split(' / ')[0];
+        cueTimeList[i] = audioElem.currentTime;
+      }
+      else {
+        /* Move to that time */
+        audioElem.currentTime = cueTimeList[i];
+        setSync(Math.trunc(i / 5));
+      }
+    }
+  })
 }
 
 export default initAudio;

@@ -22,3 +22,9 @@ export const Cue = styled.button`
   cursor: pointer;
   margin: 0 10px;
 `
+
+export const CueTitle = styled.p`
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+`

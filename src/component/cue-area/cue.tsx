@@ -12,7 +12,7 @@ class Cue extends React.Component<CueProps> {
 
   render() {
     return(
-      <S.Cue>{this.props.number}</S.Cue>
+      <S.Cue className="cue">{this.props.number}</S.Cue>
     )
   }
 }

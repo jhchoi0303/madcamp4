@@ -35,6 +35,7 @@ class Player extends React.Component<PlayerProps> {
         <S.TitleBox className="title">Load from youtube</S.TitleBox>
         <S.Wave className="waveform" />
         <S.PlayButtonContainer>
+          <S.TimeBox className="time-box">0:00 / 0:00</S.TimeBox>
           <S.PlayButton
             position={this.props.position}
             className="play-btn"

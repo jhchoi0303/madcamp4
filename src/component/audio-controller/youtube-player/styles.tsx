@@ -46,7 +46,6 @@ function playButtonMargin(props: PlayButtonProps) {
 
 export const PlayButtonContainer = styled.div`
   width: 100%;
-  height: 40px;
 `;
 
 export const PlayButton = styled.button`
@@ -84,6 +83,13 @@ export const PlayButton = styled.button`
       -200px 0 0 0 rgba(0, 0, 0, 0.25) inset;
   }
 `;
+
+export const TimeBox = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0 40%;
+`
 
 export const TitleBox = styled.div`
   margin: 20px 0 0;
