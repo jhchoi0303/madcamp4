@@ -7,6 +7,8 @@ import * as S from "./styles";
 
 import initAudio from "./audio"
 
+import cookies from 'react-cookies'
+
 let startIndicator = 0;
 
 const Menu1: React.FC = () => {
@@ -22,10 +24,17 @@ const Menu1: React.FC = () => {
         <S.PlayerContainer>
           <AudioController/>
           <AudioMixer/>
+          <button onClick={play_preset}>preset</button>
         </S.PlayerContainer>
       </S.Main>
     </Layout>
   );
 };
+
+function play_preset(): void
+{
+  console.log(cookies.load('preset_info'))
+  return;
+}
 
 export default Menu1;
