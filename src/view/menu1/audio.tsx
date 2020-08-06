@@ -7,6 +7,8 @@ const ratioList = [1, 1];
 
 let playingBPM = 0;
 const bpmList = [0, 0];
+const syncList:number[][][] | null[] = [null, null];
+const intervalList: number[] = [0, 0];
 
 function initAudio() {
   initAudioPlayer();
@@ -41,6 +43,7 @@ function initAudioPlayer() {
     playButtonElem.addEventListener('click', (ev) => {
       waveformList[i]?.playPause();
       setBPM(i);
+      setSync(i);
     });
   }
 }
@@ -82,6 +85,8 @@ function initUrlInputBox() {
               );
 
               bpmList[i] = json.bpm;
+              syncList[i] = json.sync_info;
+              console.log(json.sync_info);
             }
           }
           requestMeta.send();
@@ -94,7 +99,9 @@ function initUrlInputBox() {
 
           /* Initialize a play button image */
           playBtnImageElem.setAttribute('src', `${playImage}`);
-          const audioElem = document.querySelectorAll('.waveform audio')[i] as HTMLAudioElement;
+          let audioElem = document.querySelectorAll('.waveform audio')[i] as HTMLAudioElement;
+          if (audioElem == null)
+            audioElem = document.querySelector('.waveform audio') as HTMLAudioElement;
           audioElem.addEventListener("ended", (ev) => {
             playBtnImageElem.setAttribute('src', `${playImage}`);
           });
@@ -237,6 +244,35 @@ function setBPM(index: number) {
 
   const bpmElem = document.querySelector('#bpm-box') as HTMLDivElement;
   bpmElem.innerHTML = playingBPM.toString() + " BPM";
+}
+
+function setSync(index: number) {
+  const otherIndex = (index + 1) % 2;
+
+  const audioElemList = document.querySelectorAll('.waveform audio') as NodeListOf<HTMLAudioElement>;
+  const audioElem = audioElemList[index];
+  const otherAudioElem = audioElemList[otherIndex];
+
+  const interval = 60 / playingBPM;
+  
+  if (audioElem.paused)
+    return;
+  
+  if (otherAudioElem == null || otherAudioElem.paused) {
+  }
+  else {
+    const currentTime = otherAudioElem.currentTime;
+    const beatStart = syncList[otherIndex]?.[0][0] as number;
+
+    const currentBeat = Math.round((currentTime - beatStart) / interval);
+    const offset = currentTime - currentBeat * interval;
+
+    const enterTime = audioElem.currentTime;
+    const enterBeatStart = syncList[index]?.[0][0] as number;
+    const enterBeat = Math.round((enterTime - enterBeatStart) / interval);
+
+    audioElem.currentTime = enterBeat * interval + offset;
+  }
 }
 
 export default initAudio;
