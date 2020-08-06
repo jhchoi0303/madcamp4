@@ -11,9 +11,9 @@ class DrumKit {
     this.currentHighhat = "./sounds/closedhighhat.wav";
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
-    this.hihatAudio = document.querySelector(".hihat-sound");
+    this.hihatAudio = document.querySelector(".hihat-open-sound");
     this.clapAudio = document.querySelector(".clap-sound");
-    this.highhatAudio = document.querySelector(".highhat-sound");
+    this.highhatAudio = document.querySelector(".hihat-closed-sound");
     this.index = 0;
     this.bpm = 300;
     this.isPlaying = null;
@@ -88,7 +88,7 @@ class DrumKit {
           this.snareAudio.currentTime = 0;
           this.snareAudio.play();
         }
-        if (bar.classList.contains("hihat-pad")) {
+        if (bar.classList.contains("hihat-open-pad")) {
           this.hihatAudio.currentTime = 0;
           this.hihatAudio.play();
         }
@@ -96,7 +96,7 @@ class DrumKit {
           this.clapAudio.currentTime = 0;
           this.clapAudio.play();
         }
-        if (bar.classList.contains("highhat-pad")) {
+        if (bar.classList.contains("hihat-closed-pad")) {
           this.highhatAudio.currentTime = 0;
           this.highhatAudio.play();
         }
@@ -142,12 +142,12 @@ class DrumKit {
       case "snare-select":
         this.snareAudio.src = selectionValue;
         break;
-      case "hihat-select":
+      case "hihat-open-select":
         this.hihatAudio.src = selectionValue;
         break;
       case "clap-select":
         this.clapAudio.src = selectionValue;
-      case "highhat-select":
+      case "hihat-closed-select":
         this.highhatAudio.src = selectionValue;
     }
   }

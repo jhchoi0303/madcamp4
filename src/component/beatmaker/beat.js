@@ -56,20 +56,20 @@ const Styles = styled.div`
     justify-content: flex-start;
   }
 
-  .hihat-track,
+  .hihat-open-track,
   .snare-track,
   .kick-track,
   .clap-track,
-  .highhat-track {
+  .hihat-closed-track {
     display: flex;
     align-items: center;
     width: 70%;
   }
   .kick,
   .snare,
-  .hihat,
+  .hihat-open,
   .clap,
-  .highhat {
+  .hihat-closed {
     display: flex;
   }
   .controls {
@@ -261,17 +261,17 @@ export default class Beat extends React.Component {
                 <div class="pad kick-pad b15"></div>
               </div>
             </div>
-            <div class="hihat-track">
+            <div class="hihat-open-track">
               <div class="controls">
                 <h1>Open High hat</h1>
-                <button data-track="1" class="mute hihat-volume">
+                <button data-track="1" class="mute hihat-open-volume">
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
-                <div name="hihat-select" id="hihat-select">
+                <div name="hihat-open-select" id="hihat-open-select">
                   <option value="./sounds/1.wav"></option>
                 </div>
               </div>
-              <div class="hihat">
+              <div class="hihat-open">
                 <div class="pad hihat-open-pad b0"></div>
                 <div class="pad hihat-open-pad b1"></div>
                 <div class="pad hihat-open-pad b2"></div>
@@ -291,17 +291,17 @@ export default class Beat extends React.Component {
               </div>
             </div>
 
-            <div class="highhat-track">
+            <div class="hihat-closed-track">
               <div class="controls">
                 <h1> Closed High hat</h1>
-                <button data-track="2" class="mute highhat-volume">
+                <button data-track="2" class="mute hihat-closed-volume">
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
-                <div name="highhat-select" id="highhat-select">
+                <div name="hihat-closed-select" id="hihat-closed-select">
                   <option value="./sounds/2.wav"></option>
                 </div>
               </div>
-              <div class="highhat">
+              <div class="hihat-closed">
                 <div class="pad hihat-closed-pad b0"></div>
                 <div class="pad hihat-closed-pad b1"></div>
                 <div class="pad hihat-closed-pad b2"></div>
@@ -393,9 +393,9 @@ export default class Beat extends React.Component {
             class="snare-sound"
             src="./sounds/3.wav"
           ></audio>
-          <audio class="hihat-sound" src="./sounds/2.wav"></audio>
+          <audio class="hihat-open-sound" src="./sounds/2.wav"></audio>
           <audio class="clap-sound" src="./sounds/4.wav"></audio>
-          <audio class="highhat-sound" src="./sounds/3.wav"></audio>
+          <audio class="hihat-closed-sound" src="./sounds/3.wav"></audio>
 
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
