@@ -29,7 +29,7 @@ const Styles = styled.div`
 
   .sequencer {
     display: flex;
-    min-height: 80vh;
+    min-height: 50vh;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;

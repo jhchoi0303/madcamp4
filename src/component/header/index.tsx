@@ -17,18 +17,13 @@ const Header: React.FC<HeaderProps> = () => {
       </S.MobileLink>
       <S.DesktopButtons>
         <S.Option>
-          <S.Buttons>
-            음악 제작소
-            <S.DropDown>
-              <S.DesktopLink to="/madcamp4/menu1">
-                <S.Content>메인</S.Content>
-              </S.DesktopLink>
-              <S.DesktopLink to="/madcamp4/menu11">
-                <S.Content>비트 찍기</S.Content>
-              </S.DesktopLink>
-            </S.DropDown>
-          </S.Buttons>
+          <S.DesktopLink to="/madcamp4/menu1">
+            <S.Buttons>메인</S.Buttons>
+          </S.DesktopLink>
         </S.Option>
+        <S.DesktopLink to="/madcamp4/menu11">
+          <S.Buttons>비트찍기</S.Buttons>
+        </S.DesktopLink>
         <S.DesktopLink to="/madcamp4/menu2">
           <S.Buttons>도움</S.Buttons>
         </S.DesktopLink>

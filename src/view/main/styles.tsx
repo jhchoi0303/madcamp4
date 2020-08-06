@@ -18,8 +18,8 @@ export const Title = styled.div`
   color: white;
   text-align: center;
   font-family: Impact, Charcoal, sans-serif;
-  font-size: 60px;
-  margin-bottom: 40px;
+  font-size: 80px;
+  margin-bottom: 50px;
 `;
 export const Content = styled.div`
   width: 100%;
@@ -51,7 +51,7 @@ export const Text = styled.div`
   height: 400px;
 
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
