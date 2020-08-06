@@ -32,13 +32,27 @@ class DrumKit {
   saveSounds() {
     let arr = new Array();
     let step = this.index++ % 16;
-    const bar = document.querySelector(`.b${step}`);
-    if (bar.classList.contains("active")) {
-      if (bar.classList.contains("kick-pad")) {
-        arr = [0, step * 0.0625];
+    const bar = document.querySelectorAll(`.b${step}`);
+    for(var i=0; i<bar.length; i++)
+    {
+      if (bar[i].classList.contains("active")) {
+        if (bar[i].classList.contains("kick-pad")) {
+          arr.push([0, step * 0.0625]);
+        }
+        else if (bar[i].classList.contains("hihat-open-pad")) {
+          arr.push([1, step * 0.0625]);
+        }
+        else if (bar[i].classList.contains("hihat-closed-pad")) {
+          arr.push([2, step * 0.0625]);
+        }
+        else if (bar[i].classList.contains("snare-pad")) {
+          arr.push([3, step * 0.0625]);
+        }
+        else if (bar[i].classList.contains("clap-pad")) {
+          arr.push([4, step * 0.0625]);
+        }
       }
     }
-
     return arr;
   }
 
