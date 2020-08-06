@@ -1,10 +1,13 @@
 import styled, { keyframes } from "styled-components/macro";
+
+import { fadeIn } from "../../animation/keyframe";
 import { THEME_COLOR, BREAKPOINT } from "../../constants";
 
 export const Main = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
+  animation: ${fadeIn} 0.5s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
   }
 `;
@@ -15,6 +18,7 @@ export const Section = styled.div`
   margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     margin-bottom: 30rem;
     flex-direction: row-reverse;
@@ -23,10 +27,14 @@ export const Section = styled.div`
 `;
 
 export const IntroContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 7rem 3rem;
   @media only screen and (min-width: ${BREAKPOINT}px) {
-    width: 50%;
+    width: 100%;
     height: 100%;
     padding: 0rem 10rem;
   }
@@ -36,7 +44,9 @@ export const IntroTitle = styled.div`
   text-align: center;
   font-size: 4rem;
   font-weight: 800;
-  color: ${THEME_COLOR.PRIMARY};
+  margin-right: 50px;
+  margin-left: 50px;
+  color: white;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     font-size: 5rem;
     text-align: left;
@@ -71,14 +81,14 @@ export const PrimaryColor = styled.span`
   color: ${THEME_COLOR.PRIMARY};
 `;
 
-export const SliderContainer = styled.div`
-  width: 100%;
-  height: 100%;
+export const SliderContainer = styled.img`
+  width: 70%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   @media only screen and (min-width: ${BREAKPOINT}px) {
-    width: 50%;
+    width: 70%;
   }
 `;
 
@@ -227,7 +237,27 @@ export const ButtonContainer = styled.div`
   }
 `;
 
-export const JoinButton = styled.button`
+export const Explanation = styled.div`
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-left: 100px;
+  margin-right: 100px;
+`;
+
+export const ExplanationContainer = styled.div`
+  background-color: rgb(255, 255, 255, 0.6);
+  width: 80%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+export const JoinButton = styled.a`
   position: relative;
   width: 30rem;
   height: 6rem;
@@ -244,4 +274,11 @@ export const JoinButton = styled.button`
     transform: scale(0.9);
   }
   animation: ${bounce} 0.5s ease infinite alternate;
+`;
+
+export const Title = styled.div`
+  color: white;
+  font-size: 40px;
+  margin-left: 100px;
+  margin-bottom: 20px;
 `;

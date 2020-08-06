@@ -3,6 +3,7 @@ import React from "react";
 import { STATIC_URL } from "../../constants";
 
 import * as S from "./styles";
+import logo from "../../images/logo.png";
 
 interface HeaderProps {}
 
@@ -10,7 +11,7 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <S.Header>
       <S.DesktopLink to="/madcamp4">
-        <S.Logo src={STATIC_URL.LOGO} alt="Logo"></S.Logo>
+        <S.Logo src={logo} alt="Logo"></S.Logo>
       </S.DesktopLink>
       <S.MobileLink to="/madcamp4">
         <S.MobileLogo src={STATIC_URL.LOGO_WITHOUT_TEXT} alt="Mobile Logo" />
