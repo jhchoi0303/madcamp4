@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import { CookiesProvider } from 'react-cookie';
+
 import Main from "./view/main";
 import Menu1 from "./view/menu1";
 import Menu2 from "./view/menu2";

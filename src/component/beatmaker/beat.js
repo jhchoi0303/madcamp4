@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import DrumKit from "./beatmaker";
+import { instanceOf } from 'prop-types';
+import cookies from 'react-cookies';
 
 const Styles = styled.div`
   .kick-pad,
@@ -172,6 +174,7 @@ const Styles = styled.div`
 `;
 
 export default class Beat extends React.Component {
+
   componentDidMount() {
     const drumKit = new DrumKit();
 
@@ -196,6 +199,13 @@ export default class Beat extends React.Component {
         let result_sound = drumKit.saveSounds();
         preset_info = preset_info.concat(result_sound);
       }
+      //const { cookies } = this.props;
+      //cookies.set('preset_info', preset_info);
+      cookies.save('preset_info', preset_info)
+
+      let result_t = cookies.load('preset_info')
+      console.log(result_t)
+
       console.log(preset_info);
     });
 
