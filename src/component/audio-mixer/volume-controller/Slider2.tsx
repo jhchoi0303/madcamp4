@@ -23,22 +23,25 @@ const sliderThumbStyles = (props: SliderProps) => `
 
 const Styles = styled.div`
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
+
   width: 150px;
-  transform: rotate(-90deg);
+  margin: 20px 0 0 0;
+
   color: #888;
 
   .value {
     flex: 1;
     font-size: 2rem;
     text-align: center;
-    transform: rotate(-270deg);
   }
   .slider {
     flex: 3;
     -webkit-appearance: none;
-    width: 300px;
-    height: 15px;
+    width: 150px;
+    height: 10px;
     border-radius: 5px;
     background: #efefef;
     outline: none;
@@ -62,10 +65,6 @@ class Slider extends React.Component<SliderProps, SliderState> {
     };
   }
 
-  componentDidMount() {
-    console.log("hello slider");
-  }
-
   render() {
     const value = this.state.value;
     return (
@@ -75,13 +74,13 @@ class Slider extends React.Component<SliderProps, SliderState> {
       >
         <input
           type="range"
-          min={-25}
-          max={5}
+          min={-100}
+          max={100}
           value={this.state.value}
-          className="slider"
-          onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
+          className="slider ratio"
+          onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
         />
-        <div className="value">{this.state.value}</div>
+        <div className="value ratio-value">{this.state.value}</div>
       </Styles>
     );
   }

@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import styled from "styled-components/macro"
 
-export const AudioController = styled.div`
+export const AudioMixer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -8,4 +8,4 @@ export const AudioController = styled.div`
 
   width: 100%;
   padding: 30px 3%;
-`;
+`

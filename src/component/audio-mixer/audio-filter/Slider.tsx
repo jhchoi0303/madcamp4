@@ -11,8 +11,8 @@ interface SliderState {
 }
 
 const sliderThumbStyles = (props: SliderProps) => `
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: ${props.color};
   cursor: pointer;
   outline: 5px solid #333;
@@ -24,26 +24,26 @@ const sliderThumbStyles = (props: SliderProps) => `
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  width: 350px;
-
+  width: 150px;
+  transform: rotate(-90deg);
   color: #888;
+
+  margin: 63px -50px;
 
   .value {
     flex: 1;
     font-size: 2rem;
     text-align: center;
+    transform: rotate(-270deg);
   }
   .slider {
     flex: 3;
     -webkit-appearance: none;
-    width: 300px;
+    width: 150px;
     height: 15px;
     border-radius: 5px;
     background: #efefef;
     outline: none;
-    margin-left: 40px;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
@@ -64,10 +64,6 @@ class Slider extends React.Component<SliderProps, SliderState> {
     };
   }
 
-  componentDidMount() {
-    console.log("hello slider");
-  }
-
   render() {
     const value = this.state.value;
     return (
@@ -80,10 +76,10 @@ class Slider extends React.Component<SliderProps, SliderState> {
           min={-25}
           max={5}
           value={this.state.value}
-          className="slider"
-          onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
+          className="slider filter"
+          onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
         />
-        <div className="value">{this.state.value}</div>
+        <div className="value filter-value">{this.state.value}</div>
       </Styles>
     );
   }

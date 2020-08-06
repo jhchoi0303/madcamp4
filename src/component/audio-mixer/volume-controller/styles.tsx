@@ -1,21 +1,21 @@
 import styled from "styled-components/macro";
 
-export const SliderRow = styled.div`
+export const MasterVolume = styled.div`
   display: flex;
   flex-direction: row;
+  width:100%;
   align-items: center;
-  width: 25rem;
-  height: 30rem;
-  margin: 2rem;
+  justify-content: center;
 `;
 export const Slider = styled.div`
   margin-top: 10rem;
   width: 50px;
 `;
-export const SliderColumn = styled.div`
+export const VolumeController = styled.div`
+  flex-basis:20%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60rem;
 `;

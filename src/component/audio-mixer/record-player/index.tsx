@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-import record from "../../images/record.png";
+import record from "../../../images/record.png";
 
 interface RecordPlayerProps {}
 
