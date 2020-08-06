@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { THEME_COLOR } from "../../../constants";
 
 interface SliderProps {
   color: string;
@@ -14,9 +15,10 @@ const sliderThumbStyles = (props: SliderProps) => `
   width: 20px;
   height: 20px;
   background: ${props.color};
+  background-color: ${THEME_COLOR.PINK};
   cursor: pointer;
-  outline: 5px solid #333;
-  opacity: ${props.opacity};
+  outline: 1px solid #333;
+
   -webkit-transition: .2s;
   transition: opacity .2s;
 `;
@@ -77,7 +79,7 @@ class Slider extends React.Component<SliderProps, SliderState> {
           max={5}
           value={this.state.value}
           className="slider filter"
-          onChange={ev => this.setState({ value: parseInt(ev.target.value) })}
+          onChange={(ev) => this.setState({ value: parseInt(ev.target.value) })}
         />
         <div className="value filter-value">{this.state.value}</div>
       </Styles>

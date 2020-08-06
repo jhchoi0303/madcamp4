@@ -30,23 +30,23 @@ const Styles = styled.div`
     /* background: rgb(255, 153, 204);*/
   }
   .kick-pad.active {
-    background: rgb(59, 197, 231);
+    background: #feda75;
   }
   .snare-pad.active {
-    background: rgb(218, 58, 178);
+    background: #fa7e1e;
   }
   .hihat-pad.active {
-    background: rgb(241, 158, 64);
+    background: #d62976;
   }
   .clap-pad.active {
-    background: rgb(210, 11, 13);
+    background: #962fbf;
   }
   .highhat-pad.active {
-    background: rgb(255, 051, 204);
+    background: #4f5bd5;
   }
   .sequencer {
     display: flex;
-    min-height: 100vh;
+    min-height: 80vh;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -160,6 +160,7 @@ const Styles = styled.div`
   .controls h1 {
     font-family: Helvetica;
     font-size: 15px;
+    color: white;
     margin-right: 30px;
     width: 60px;
     height: 50px;

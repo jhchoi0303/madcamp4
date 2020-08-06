@@ -1,6 +1,6 @@
-import styled from "styled-components/macro"
+import styled from "styled-components/macro";
 
-export const BeatChecker =  styled.div`
+export const BeatChecker = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -10,6 +10,6 @@ export const BeatChecker =  styled.div`
 
   div {
     font-size: 2rem;
-    color: #eeeeee;
+    color: white;
   }
-`
+`;

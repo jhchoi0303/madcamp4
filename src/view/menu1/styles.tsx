@@ -1,10 +1,11 @@
 import styled, { keyframes } from "styled-components/macro";
 import { THEME_COLOR, BREAKPOINT } from "../../constants";
-
+import { fadeIn } from "../../animation/keyframe";
 export const Main = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
+  animation: ${fadeIn} 1.5s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
   }
 `;

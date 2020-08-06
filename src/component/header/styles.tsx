@@ -35,7 +35,7 @@ export const MobileLogo = styled.img`
 `;
 
 export const DesktopButtons = styled.div`
-  height: 100%;
+  height: 50%;
   display: none;
   margin-right: 10rem;
   @media only screen and (min-width: ${BREAKPOINT}px) {
@@ -75,6 +75,7 @@ export const MobileLink = styled(Link)`
 
 export const Content = styled.div`
   height: 2rem;
+
   display: none;
 
   min-width: 75px;
@@ -86,7 +87,7 @@ export const Content = styled.div`
 
 export const DropDown = styled.div`
   position: absolute;
-  top: 12rem;
+  top: 11rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -110,12 +111,12 @@ export const Buttons = styled.button`
   height: 100%;
   margin-top: 20px;
   outline: none;
-  border: none;
   background-color: inherit;
   font-size: 1.5rem;
   font-weight: bolder;
+  border: none;
   display: flex;
-  align-items: center;
+
   justify-content: center;
   color: white;
   :hover ${Content} {
@@ -126,8 +127,8 @@ export const Buttons = styled.button`
     color: white;
   }
   @media only screen and (min-width: ${BREAKPOINT}px) {
-    height: 9rem;
-    width: 10rem;
+    height: 4rem;
+    width: 13rem;
     padding: 0rem 2rem;
     transition: background-color 0.5s;
   }
@@ -136,6 +137,6 @@ export const Buttons = styled.button`
     height: 2rem;
   }
   :hover {
-    border: thick white;
+    border-bottom: 1px solid;
   }
 `;
