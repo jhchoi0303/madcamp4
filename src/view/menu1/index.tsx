@@ -64,6 +64,8 @@ function play_preset(): void // no ';' here
   let start_preset_sync_index : number = 0;
 
   let preset_info = cookies.load("preset_info");
+  console.log("this")
+  console.log(preset_info)
 
   for(var i=0; i<preset_info.length; i++)
   {

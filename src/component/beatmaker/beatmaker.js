@@ -65,7 +65,7 @@ class DrumKit {
       var snareAudio = new Audio("./sounds/snare-acoustic01.wav");
       snareAudio.play();
     }
-    if (this.classList.contains("hihat-pad")) {
+    if (this.classList.contains("hihat-open-pad")) {
       var hihatAudio = new Audio("./sounds/openhighhat.wav");
       hihatAudio.play();
     }
@@ -73,7 +73,7 @@ class DrumKit {
       var clapAudio = new Audio("./sounds/clap.wav");
       clapAudio.play();
     }
-    if (this.classList.contains("highhat-pad")) {
+    if (this.classList.contains("hihat-closed-pad")) {
       var highhatAudio = new Audio("./sounds/closedhighhat.wav");
       highhatAudio.play();
     }

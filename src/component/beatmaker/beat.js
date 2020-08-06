@@ -233,7 +233,7 @@ export default class Beat extends React.Component {
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="kick-select" id="kick-select">
-                  <option value="./sounds/kick-classic.wav"></option>
+                  <option value="./sounds/0.wav"></option>
                 </div>
               </div>
               <div class="kick">
@@ -262,7 +262,7 @@ export default class Beat extends React.Component {
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="hihat-select" id="hihat-select">
-                  <option value="./sounds/openhighhat.wav"></option>
+                  <option value="./sounds/1.wav"></option>
                 </div>
               </div>
               <div class="hihat">
@@ -292,7 +292,7 @@ export default class Beat extends React.Component {
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="highhat-select" id="highhat-select">
-                  <option value="./sounds/closedhighhat.wav"></option>
+                  <option value="./sounds/2.wav"></option>
                 </div>
               </div>
               <div class="highhat">
@@ -322,7 +322,7 @@ export default class Beat extends React.Component {
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="snare-select" id="snare-select">
-                  <option value="./sounds/snare-acoustic01.wav"></option>
+                  <option value="./sounds/3.wav"></option>
                 </div>
               </div>
               <div class="snare">
@@ -352,7 +352,7 @@ export default class Beat extends React.Component {
                   <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="clap-select" id="clap-select">
-                  <option value="./sounds/clap.wav"></option>
+                  <option value="./sounds/4.wav"></option>
                 </div>
               </div>
               <div class="clap">
@@ -382,14 +382,14 @@ export default class Beat extends React.Component {
             <div class="arraySync"></div>
           </div>
 
-          <audio class="kick-sound" src="./sounds/kick-classic.wav"></audio>
+          <audio class="kick-sound" src="./sounds/1.wav"></audio>
           <audio
             class="snare-sound"
-            src="./sounds/snare-acoustic01.wav"
+            src="./sounds/3.wav"
           ></audio>
-          <audio class="hihat-sound" src="./sounds/openhighhat.wav"></audio>
-          <audio class="clap-sound" src="./sounds/clap.wav"></audio>
-          <audio class="highhat-sound" src="./sounds/closedhighhat.wav"></audio>
+          <audio class="hihat-sound" src="./sounds/2.wav"></audio>
+          <audio class="clap-sound" src="./sounds/4.wav"></audio>
+          <audio class="highhat-sound" src="./sounds/3.wav"></audio>
 
           <script
             src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
