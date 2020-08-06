@@ -18,13 +18,13 @@ const Header: React.FC<HeaderProps> = () => {
       <S.DesktopButtons>
         <S.Option>
           <S.Buttons>
-            음악<br></br> 제작소<br></br>(공방)
+            음악 제작소
             <S.DropDown>
               <S.DesktopLink to="/madcamp4/menu1">
                 <S.Content>메인</S.Content>
               </S.DesktopLink>
               <S.DesktopLink to="/madcamp4/menu11">
-                <S.Content>두번째 공방</S.Content>
+                <S.Content>비트 찍기</S.Content>
               </S.DesktopLink>
             </S.DropDown>
           </S.Buttons>
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = () => {
           <S.Buttons>앨범</S.Buttons>
         </S.DesktopLink>
         <S.DesktopLink to="/madcamp4/menu3">
-          <S.Buttons>커뮤너티(전시회)</S.Buttons>
+          <S.Buttons>커뮤너티</S.Buttons>
         </S.DesktopLink>
         <S.DesktopLink to="/madcamp4/menu4">
           <S.Buttons>내 음악</S.Buttons>

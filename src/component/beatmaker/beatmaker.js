@@ -15,7 +15,7 @@ class DrumKit {
     this.clapAudio = document.querySelector(".clap-sound");
     this.highhatAudio = document.querySelector(".highhat-sound");
     this.index = 0;
-    this.bpm = 150;
+    this.bpm = 300;
     this.isPlaying = null;
     this.selects = document.querySelectorAll("select");
     this.muteBtns = document.querySelectorAll(".mute");

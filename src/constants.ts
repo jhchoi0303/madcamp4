@@ -23,4 +23,7 @@ export const THEME_COLOR = {
   SECONDARY: "#FFCC66",
   GRAY: "#F1F1F1",
   GRAYER: "#EDEDED",
+  PINK: "#E2046C",
+  ORANGE: "#FEC43F",
+  ORANGER: "#FF6400",
 };

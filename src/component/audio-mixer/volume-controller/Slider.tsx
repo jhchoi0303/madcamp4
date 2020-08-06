@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-
+import { THEME_COLOR } from "../../../constants";
 interface SliderProps {
   color: string;
   opacity: string;
@@ -13,10 +13,9 @@ interface SliderState {
 const sliderThumbStyles = (props: SliderProps) => `
   width: 25px;
   height: 25px;
-  background: ${props.color};
+  background: ${THEME_COLOR.ORANGE};
   cursor: pointer;
-  outline: 5px solid #333;
-  opacity: ${props.opacity};
+  outline: 3px solid rgb(51,51,51,0.5);
   -webkit-transition: .2s;
   transition: opacity .2s;
 `;

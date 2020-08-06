@@ -9,8 +9,8 @@ const VolumeController: React.FC<MasterProps> = () => {
   return (
     <S.VolumeController>
       <S.MasterVolume>
-          <Slider color="#eeeeee" opacity="0.1"></Slider>
-          <Slider color="#eeeeee" opacity="0.1"></Slider>
+        <Slider color="#eeeeee" opacity="0.1"></Slider>
+        <Slider color="#eeeeee" opacity="0.1"></Slider>
       </S.MasterVolume>
 
       <Slider2 color="#eeeeee" opacity="0.1"></Slider2>
