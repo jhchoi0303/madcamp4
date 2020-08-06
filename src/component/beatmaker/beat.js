@@ -49,7 +49,7 @@ const Styles = styled.div`
     min-height: 80vh;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .hihat-track,
@@ -220,7 +220,7 @@ export default class Beat extends React.Component {
               <div class="controls">
                 <h1>Kick</h1>
                 <button data-track="0" class="mute kick-volume">
-                  <i class="fas fa-volume-mute"></i>
+                  <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="kick-select" id="kick-select">
                   <option value="./sounds/kick-classic.wav"></option>
@@ -249,7 +249,7 @@ export default class Beat extends React.Component {
               <div class="controls">
                 <h1>Open High hat</h1>
                 <button data-track="1" class="mute hihat-volume">
-                  <i class="fas fa-volume-mute"></i>
+                  <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="hihat-select" id="hihat-select">
                   <option value="./sounds/openhighhat.wav"></option>
@@ -279,7 +279,7 @@ export default class Beat extends React.Component {
               <div class="controls">
                 <h1> Closed High hat</h1>
                 <button data-track="2" class="mute highhat-volume">
-                  <i class="fas fa-volume-mute"></i>
+                  <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="highhat-select" id="highhat-select">
                   <option value="./sounds/closedhighhat.wav"></option>
@@ -309,7 +309,7 @@ export default class Beat extends React.Component {
               <div class="controls">
                 <h1>Snare</h1>
                 <button data-track="3" class="mute snare-volume">
-                  <i class="fas fa-volume-mute"></i>
+                  <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="snare-select" id="snare-select">
                   <option value="./sounds/snare-acoustic01.wav"></option>
@@ -339,7 +339,7 @@ export default class Beat extends React.Component {
               <div class="controls">
                 <h1>Clap</h1>
                 <button data-track="4" class="mute clap-volume">
-                  <i class="fas fa-volume-mute"></i>
+                  <i class="fas fa-volume-mute">🔊</i>
                 </button>
                 <div name="clap-select" id="clap-select">
                   <option value="./sounds/clap.wav"></option>

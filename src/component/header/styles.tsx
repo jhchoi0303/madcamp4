@@ -117,7 +117,6 @@ export const Buttons = styled.button`
   border: none;
   display: flex;
 
-  justify-content: center;
   color: white;
   :hover ${Content} {
     display: block;
@@ -125,6 +124,11 @@ export const Buttons = styled.button`
     justify-content: center;
     align-items: center;
     color: white;
+  }
+  @keyframes increase {
+    100% {
+      width: 20rem;
+    }
   }
   @media only screen and (min-width: ${BREAKPOINT}px) {
     height: 4rem;
@@ -137,6 +141,12 @@ export const Buttons = styled.button`
     height: 2rem;
   }
   :hover {
+    -webkit-animation: increase 1s;
+    -moz-animation: increase 1s;
+    -o-animation: increase 1s;
+    animation: increase 1s;
+    animation-fill-mode: forwards;
+    justify-content: center;
     border-bottom: 1px solid;
   }
 `;

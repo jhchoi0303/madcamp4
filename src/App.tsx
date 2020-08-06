@@ -12,6 +12,7 @@ import Menu2 from "./view/menu2";
 import Menu3 from "./view/menu3";
 import Menu4 from "./view/menu4";
 import Menu11 from "./view/menu1.1";
+import Menu111 from "./view/menu1.1.1";
 
 import Post from "./view/post";
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/madcamp4/menu3" exact component={Menu3} />
         <Route path="/madcamp4/menu4" exact component={Menu4} />
         <Route path="/madcamp4/menu11" exact component={Menu11} />
+        <Route path="/madcamp4/menu111" exact component={Menu111} />
         <Route path="/madcamp4/post" exact component={Post} />
         <Route path="/test/timer" exact component={Timer} />
         <Route path="/test/timer/:name" exact component={Timer} />
