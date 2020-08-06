@@ -46,7 +46,9 @@ const Styles = styled.div`
   }
   .sequencer {
     display: flex;
-    min-height: 80vh;
+    min-height: 30vh;
+    background: transparent;
+
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -157,6 +159,10 @@ const Styles = styled.div`
     }
   }
 
+  body {
+    background-color: black;
+    background-opacity: 0.6;
+  }
   .controls h1 {
     font-family: Helvetica;
     font-size: 15px;

@@ -6,6 +6,8 @@ export const Main = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
+
+  background-size: cover;
   animation: ${fadeIn} 1.5s linear;
   @media only screen and (min-width: ${BREAKPOINT}px) {
   }

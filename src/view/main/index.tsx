@@ -10,10 +10,10 @@ const Main: React.FC = () => {
       <S.Main>
         <S.Section>
           <S.RecordPlayer>
-            <S.ImageContainer>
-              <S.Image src={record}></S.Image>
-            </S.ImageContainer>
-            <S.Text>소개</S.Text>
+            <S.Text>
+              <S.Title>YOU DJ</S.Title>
+              <S.Content>Ultimate online DJ mixer</S.Content>
+            </S.Text>
           </S.RecordPlayer>
         </S.Section>
       </S.Main>
