@@ -11,7 +11,6 @@ class PresetPlay extends React.Component {
   }
 }
 
-
 let audio_0 : HTMLAudioElement = new Audio(require('./drum/0.wav'));
 let audio_1 : HTMLAudioElement = new Audio(require('./drum/1.wav'));
 let audio_2 : HTMLAudioElement = new Audio(require('./drum/2.wav'));
@@ -34,7 +33,11 @@ function play_preset(): void // no ';' here
     return;
   }
 
-  let bpm : number = 95;
+  const bpmBoxElem = document.querySelector("#bpm-box") as HTMLDivElement;
+  
+  let bpm : number = parseInt(bpmBoxElem.innerHTML.split(" bpm")[0]);
+  if (isNaN(bpm)) bpm = 95;
+
   let one_bar_length : number = 60 / bpm * 4;
 
   let pre_position : number = 0;
