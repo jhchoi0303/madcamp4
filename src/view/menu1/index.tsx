@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "../../component/layout";
 import AudioController from "../../component/audio-controller";
 import AudioMixer from "../../component/audio-mixer";

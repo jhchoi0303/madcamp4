@@ -388,7 +388,7 @@ export default class Beat extends React.Component {
             <div class="arraySync"></div>
           </div>
 
-          <audio class="kick-sound" src="./sounds/1.wav"></audio>
+          <audio class="kick-sound" src="./sounds/0.wav"></audio>
           <audio
             class="snare-sound"
             src="./sounds/3.wav"
