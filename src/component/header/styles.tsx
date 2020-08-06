@@ -20,10 +20,12 @@ export const Header = styled.div`
 `;
 
 export const Logo = styled.img`
+  margin-left: 40px;
+
   display: none;
   @media only screen and (min-width: ${BREAKPOINT}px) {
     display: block;
-    width: 15rem;
+    width: 20rem;
   }
 `;
 

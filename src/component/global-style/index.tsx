@@ -12,6 +12,9 @@ const GlobalStyle = createGlobalStyle`
     font-size : 10px;
    
   }
+  button {
+    cursor: pointer;
+  }
   
   body {
     margin: 0;
@@ -19,9 +22,7 @@ const GlobalStyle = createGlobalStyle`
     background-color:black;
   }
 
-  button {
 
-  }
   
   ul {
     list-style-type: none;
