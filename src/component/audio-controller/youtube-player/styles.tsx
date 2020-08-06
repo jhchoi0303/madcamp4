@@ -76,4 +76,5 @@ export const TitleBox = styled.div`
   height:50px;
   text-align: center;
   font-size: 1.5rem;
+  color: #eeeeee;
 `

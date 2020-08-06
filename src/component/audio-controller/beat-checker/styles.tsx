@@ -10,5 +10,6 @@ export const BeatChecker =  styled.div`
 
   div {
     font-size: 2rem;
+    color: #eeeeee;
   }
 `
