@@ -19,7 +19,7 @@ export const STATIC_URL = {
 };
 
 export const THEME_COLOR = {
-  PRIMARY: "#FF9933",
+  PRIMARY: "#ddd",
   SECONDARY: "#FFCC66",
   GRAY: "#F1F1F1",
   GRAYER: "#EDEDED",

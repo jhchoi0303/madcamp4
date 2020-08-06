@@ -1,13 +1,19 @@
 class DrumKit {
   constructor() {
     this.pads = document.querySelectorAll(".pad");
+    this.saveBtn = document.querySelector(".save");
     this.playBtn = document.querySelector(".play");
+    this.arraySync = document.querySelector(".arraySync");
     this.currentKick = "./sounds/kick-classic.wav";
     this.currentSnare = "./sounds/snare-acoustic01.wav";
-    this.currentHihat = "./sounds/hihat.acoustic01.wav";
+    this.currentHihat = "./sounds/openhighhat.wav";
+    this.currentClap = "./sounds/clap.wav";
+    this.currentHighhat = "./sounds/closedhighhat.wav";
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
     this.hihatAudio = document.querySelector(".hihat-sound");
+    this.clapAudio = document.querySelector(".clap-sound");
+    this.highhatAudio = document.querySelector(".highhat-sound");
     this.index = 0;
     this.bpm = 150;
     this.isPlaying = null;
@@ -17,8 +23,49 @@ class DrumKit {
   activePad() {
     this.classList.toggle("active");
   }
+  arrayCheck() {
+    if (this.classList.contains("kick-pad")) {
+      var kickAudio = new Audio("./sounds/kick-classic.wav");
+      kickAudio.play();
+    }
+  }
+  saveSounds() {
+    let arr = new Array();
+    let step = this.index++ % 16;
+    const bar = document.querySelector(`.b${step}`);
+    if (bar.classList.contains("active")) {
+      if (bar.classList.contains("kick-pad")) {
+        arr = [0, step * 0.0625];
+      }
+    }
+
+    return arr;
+  }
+
+  clickSounds() {
+    if (this.classList.contains("kick-pad")) {
+      var kickAudio = new Audio("./sounds/kick-classic.wav");
+      kickAudio.play();
+    }
+    if (this.classList.contains("snare-pad")) {
+      var snareAudio = new Audio("./sounds/snare-acoustic01.wav");
+      snareAudio.play();
+    }
+    if (this.classList.contains("hihat-pad")) {
+      var hihatAudio = new Audio("./sounds/openhighhat.wav");
+      hihatAudio.play();
+    }
+    if (this.classList.contains("clap-pad")) {
+      var clapAudio = new Audio("./sounds/clap.wav");
+      clapAudio.play();
+    }
+    if (this.classList.contains("highhat-pad")) {
+      var highhatAudio = new Audio("./sounds/closedhighhat.wav");
+      highhatAudio.play();
+    }
+  }
   repeat() {
-    let step = this.index % 8;
+    let step = this.index % 16;
     const activeBars = document.querySelectorAll(`.b${step}`);
     //Loop over the pads
     activeBars.forEach((bar) => {
@@ -35,6 +82,14 @@ class DrumKit {
         if (bar.classList.contains("hihat-pad")) {
           this.hihatAudio.currentTime = 0;
           this.hihatAudio.play();
+        }
+        if (bar.classList.contains("clap-pad")) {
+          this.clapAudio.currentTime = 0;
+          this.clapAudio.play();
+        }
+        if (bar.classList.contains("highhat-pad")) {
+          this.highhatAudio.currentTime = 0;
+          this.highhatAudio.play();
         }
       }
     });
@@ -54,6 +109,7 @@ class DrumKit {
       }, interval);
     }
   }
+
   updateBtn() {
     if (!this.isPlaying) {
       this.playBtn.innerText = "Stop";
@@ -62,6 +118,10 @@ class DrumKit {
       this.playBtn.innerText = "Play";
       this.playBtn.classList.remove("active");
     }
+  }
+
+  saveSync() {
+    this.saveSounds();
   }
   changeSound(e) {
     const selectionName = e.target.name;
@@ -76,6 +136,10 @@ class DrumKit {
       case "hihat-select":
         this.hihatAudio.src = selectionValue;
         break;
+      case "clap-select":
+        this.clapAudio.src = selectionValue;
+      case "highhat-select":
+        this.highhatAudio.src = selectionValue;
     }
   }
   mute(e) {
@@ -87,10 +151,16 @@ class DrumKit {
           this.kickAudio.volume = 0;
           break;
         case "1":
-          this.snareAudio.volume = 0;
+          this.hihatAudio.volume = 0;
           break;
         case "2":
-          this.hihatAudio.volume = 0;
+          this.snareAudio.volume = 0;
+          break;
+        case "3":
+          this.clapAudio.volume = 0;
+          break;
+        case "4":
+          this.highhatAudio.volume = 0;
           break;
       }
     } else {
@@ -103,6 +173,12 @@ class DrumKit {
           break;
         case "2":
           this.hihatAudio.volume = 1;
+          break;
+        case "3":
+          this.clapAudio.volume = 1;
+          break;
+        case "4":
+          this.highhatAudio.volume = 1;
           break;
       }
     }

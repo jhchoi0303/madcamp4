@@ -11,7 +11,10 @@ interface AudioState {
   playState: Boolean;
 }
 
-class Download extends React.Component<RouteComponentProps<AudioProps>, AudioState> {
+class Download extends React.Component<
+  RouteComponentProps<AudioProps>,
+  AudioState
+> {
   constructor(props: RouteComponentProps<AudioProps>) {
     super(props);
 
@@ -33,19 +36,23 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
 
   getAudioByTitle(title: string, email: string) {
     const request = new XMLHttpRequest();
-    request.open("GET", `/api/youtube/download?title=${title}&email=${email}`, true);
+    request.open(
+      "GET",
+      `/api/youtube/download?title=${title}&email=${email}`,
+      true
+    );
     request.responseType = "blob";
     request.onload = function () {
       if (this.status === 200) {
-        const audio: HTMLAudioElement | null = document.querySelector('#audio');
+        const audio: HTMLAudioElement | null = document.querySelector("#audio");
 
         if (audio != null) {
-          audio.setAttribute('src', URL.createObjectURL(this.response));
+          audio.setAttribute("src", URL.createObjectURL(this.response));
           audio.load();
           alert("Loading success");
         }
       }
-    }
+    };
     request.send();
   }
 
@@ -55,22 +62,21 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
     request.responseType = "blob";
     request.onload = function () {
       if (this.status === 200) {
-        const audio: HTMLAudioElement | null = document.querySelector('#audio');
+        const audio: HTMLAudioElement | null = document.querySelector("#audio");
 
         if (audio != null) {
-          audio.setAttribute('src', URL.createObjectURL(this.response));
+          audio.setAttribute("src", URL.createObjectURL(this.response));
           audio.load();
           alert("Loading success");
         }
       }
-    }
+    };
     request.send();
   }
 
   startAudioFilter() {
-    const audioElem: HTMLAudioElement | null = document.querySelector('#audio');
-    if (audioElem == null)
-      return;
+    const audioElem: HTMLAudioElement | null = document.querySelector("#audio");
+    if (audioElem == null) return;
 
     const audioContext = new AudioContext();
     const audioDestination = audioContext.destination;
@@ -84,9 +90,9 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
     /* Biquad filter */
     /* freq: 0 ~ 24000 */
     /* gain: -3.4e+38 ~ 1541.27 */
-    biquadFilterHigh.type = 'highshelf';
-    biquadFilterMiddle.type = 'peaking';
-    biquadFilterLow.type = 'lowshelf';
+    biquadFilterHigh.type = "highshelf";
+    biquadFilterMiddle.type = "peaking";
+    biquadFilterLow.type = "lowshelf";
     biquadFilterHigh.frequency.value = 3200.0;
     biquadFilterMiddle.frequency.value = 1000.0;
     biquadFilterLow.frequency.value = 320.0;
@@ -101,31 +107,31 @@ class Download extends React.Component<RouteComponentProps<AudioProps>, AudioSta
       .connect(biquadFilterLow)
       .connect(gainNode)
       .connect(audioDestination);
-    
-    document.querySelector('#high')?.addEventListener('click', (ev) => {
+
+    document.querySelector("#high")?.addEventListener("click", (ev) => {
       biquadFilterHigh.gain.value = 5;
       biquadFilterMiddle.gain.value = 0;
       biquadFilterLow.gain.value = 0;
     });
-    document.querySelector('#middle')?.addEventListener('click', (ev) => {
+    document.querySelector("#middle")?.addEventListener("click", (ev) => {
       biquadFilterHigh.gain.value = 0;
       biquadFilterMiddle.gain.value = 5;
       biquadFilterLow.gain.value = 0;
     });
-    document.querySelector('#low')?.addEventListener('click', (ev) => {
+    document.querySelector("#low")?.addEventListener("click", (ev) => {
       biquadFilterHigh.gain.value = 0;
       biquadFilterMiddle.gain.value = 0;
       biquadFilterLow.gain.value = 5;
     });
-    document.querySelector('#play')?.addEventListener('click', (ev) => {
+    document.querySelector("#play")?.addEventListener("click", (ev) => {
       audioContext.resume().then(() => {
         const playState = !this.state.playState;
         this.setState({ playState: playState });
 
         if (playState) {
-            audioElem.play();
+          audioElem.play();
         } else {
-            audioElem.pause();
+          audioElem.pause();
         }
       });
     });

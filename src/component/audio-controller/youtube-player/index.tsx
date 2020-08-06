@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import * as S from "./styles"
+import * as S from "./styles";
 
 import UrlInputBox from "./url-input-box";
 import Player from "./player";
@@ -20,7 +20,7 @@ class YoutubePlayer extends React.Component<YoutubePlayerProps> {
         <UrlInputBox></UrlInputBox>
         <Player position={this.props.position}/>
       </S.YoutubePlayer>
-    )
+    );
   }
 }
 
