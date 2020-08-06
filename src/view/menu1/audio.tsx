@@ -124,7 +124,7 @@ function attachFilter(index: number) {
   const gainNode = audioContext.createGain();
 
   gainNodeList[index] = gainNode;
-  gainNode.gain.value = ratioList[index] * parseInt(masterSliderElemList[index].value);
+  gainNode.gain.value = ratioList[index] * parseInt(masterSliderElemList[index].value) / 100;
   
   /* Biquad filter */
   /* freq: 0 ~ 24000 */
@@ -195,7 +195,9 @@ function attachRatioSlider() {
     
     for (let i = 0; i < 2; i++) {
       const gainNode = gainNodeList[i] as GainNode;
-      gainNode.gain.value = ratioList[i] * parseInt(masterSliderElemList[i].value) / 100;
+
+      if (gainNode != null)
+        gainNode.gain.value = ratioList[i] * parseInt(masterSliderElemList[i].value) / 100;
     }
   })
 }
