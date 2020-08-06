@@ -9,9 +9,12 @@ const Main: React.FC = () => {
     <Layout>
       <S.Main>
         <S.Section>
-          <S.ImageContainer>
-            <S.Image src={record}></S.Image>
-          </S.ImageContainer>
+          <S.RecordPlayer>
+            <S.ImageContainer>
+              <S.Image src={record}></S.Image>
+            </S.ImageContainer>
+            <S.Text>소개</S.Text>
+          </S.RecordPlayer>
         </S.Section>
       </S.Main>
     </Layout>

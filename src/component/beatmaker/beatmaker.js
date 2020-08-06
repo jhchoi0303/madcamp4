@@ -34,7 +34,9 @@ class DrumKit {
     let step = this.index++ % 16;
     const bar = document.querySelector(`.b${step}`);
     if (bar.classList.contains("active")) {
-      arr = [0, step * 0.0625];
+      if (bar.classList.contains("kick-pad")) {
+        arr = [0, step * 0.0625];
+      }
     }
 
     return arr;
@@ -120,11 +122,7 @@ class DrumKit {
   }
 
   saveSync() {
-    if (!this.isPlaying) {
-      this.saveSounds();
-    } else {
-      this.arraySync.innerText = "Play";
-    }
+    this.saveSounds();
   }
   changeSound(e) {
     const selectionName = e.target.name;
