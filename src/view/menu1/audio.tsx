@@ -5,6 +5,9 @@ const waveformList: (WaveSurfer | null)[] = [null, null];
 const gainNodeList: (GainNode | null)[] = [null, null];
 const ratioList = [1, 1];
 
+let playingBPM = 0;
+const bpmList = [0, 0];
+
 function initAudio() {
   initAudioPlayer();
   initBeatChecker();
@@ -39,6 +42,7 @@ function initAudioPlayer() {
     /* Init play button */
     playButtonElem.addEventListener("click", (ev) => {
       waveformList[i]?.playPause();
+      setBPM(i);
     });
   }
 }
@@ -58,7 +62,6 @@ function initUrlInputBox() {
   const playBtnImageList = document.querySelectorAll(
     ".play-btn img"
   ) as NodeListOf<HTMLImageElement>;
-  const bpmElem = document.querySelector("#bpm-box") as HTMLDivElement;
 
   for (let i = 0; i < 2; i++) {
     const inputElem = inputList[i];
@@ -98,23 +101,30 @@ function initUrlInputBox() {
                   .join("")
               );
 
-              bpmElem.innerHTML = json.bpm + " bpm";
-              console.log(json.bpm);
+              bpmList[i] = json.bpm;
             }
           };
           requestMeta.send();
 
+          /* Load audio file from the server */
           waveformList[i]?.load(URL.createObjectURL(requestAudio.response));
+
           /* Attach audio filter */
           attachFilter(i);
+
+          /* Initialize a play button image */
+          playBtnImageElem.setAttribute("src", `${playImage}`);
+          const audioElem = document.querySelectorAll(".waveform audio")[
+            i
+          ] as HTMLAudioElement;
+          audioElem.addEventListener("ended", (ev) => {
+            playBtnImageElem.setAttribute("src", `${playImage}`);
+          });
         } else {
           alert("Check url");
         }
       };
       requestAudio.send();
-
-      /* Initialize play button image */
-      playBtnImageElem.setAttribute("src", `${playImage}`);
     });
   }
 }
@@ -138,9 +148,6 @@ function attachFilter(index: number) {
   }
 
   let sliderIndex = index * 3;
-
-  console.log(document.querySelectorAll(".waveform audio"));
-  console.log(index);
 
   const audioContext = new AudioContext();
   const audioDestination = audioContext.destination;
@@ -240,6 +247,36 @@ function attachRatioSlider() {
           (ratioList[i] * parseInt(masterSliderElemList[i].value)) / 100;
     }
   });
+}
+
+function setBPM(index: number) {
+  const audioElemList = document.querySelectorAll(
+    ".waveform audio"
+  ) as NodeListOf<HTMLAudioElement>;
+  const audioElem = audioElemList[index];
+
+  if (audioElem == null) return;
+
+  if (audioElem.paused) {
+    const otherAudioElem = audioElemList[(index + 1) % 2];
+
+    audioElem.playbackRate = 1;
+
+    if (otherAudioElem == null) playingBPM = 0;
+    else if (otherAudioElem.paused) {
+      playingBPM = 0;
+      otherAudioElem.playbackRate = 1;
+    }
+  } else {
+    if (playingBPM == 0) {
+      playingBPM = bpmList[index];
+    } else {
+      audioElemList[index].playbackRate = playingBPM / bpmList[index];
+    }
+  }
+
+  const bpmElem = document.querySelector("#bpm-box") as HTMLDivElement;
+  bpmElem.innerHTML = playingBPM.toString() + " BPM";
 }
 
 export default initAudio;
