@@ -38,6 +38,9 @@ const Header: React.FC<HeaderProps> = () => {
         <S.DesktopLink to="/madcamp4/menu4">
           <S.Buttons>내 음악</S.Buttons>
         </S.DesktopLink>
+        <S.DesktopLink to="/madcamp4/login">
+          <S.Buttons>로그인</S.Buttons>
+        </S.DesktopLink>
       </S.DesktopButtons>
       <S.MobileButtons>
         <S.Buttons>

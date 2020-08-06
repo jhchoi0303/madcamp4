@@ -12,6 +12,7 @@ import Menu2 from "./view/menu2";
 import Menu3 from "./view/menu3";
 import Menu4 from "./view/menu4";
 import Menu11 from "./view/menu1.1";
+import Login from "./view/login";
 
 import Post from "./view/post";
 
@@ -23,6 +24,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/madcamp4" exact component={Main} />
+        <Route path="/madcamp4/login" exact component={Login} />
         <Route path="/madcamp4/menu1" exact component={Menu1} />
         <Route path="/madcamp4/menu2" exact component={Menu2} />
         <Route path="/madcamp4/menu3" exact component={Menu3} />
