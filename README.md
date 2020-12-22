@@ -2,5 +2,4 @@
 
 
 
-![page 1](./page 1.JPG)
-
+![page 1](./page 1.jpg)
